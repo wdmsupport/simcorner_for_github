@@ -1,0 +1,197 @@
+<div class="homepage_popular_outer">
+  <div class="wrapper">
+    <div class="popular_heading">
+      {% if section.settings.title != blank %}<h2>{{ section.settings.title }}</h2>{% endif %}
+    </div>
+    <div class="home_popular_main">
+      <div id="home_popular" class="home_popular_slider">
+       
+  {% for product in collections[section.settings.home_featured_products].products %}
+        <div>	
+          <div class="popular_slid">
+            <div class="popular_slid_img">
+              <a href="{{ product.url }}"><img alt="product-img" src="{{ product.featured_image | img_url: 'large' }}"/></a>
+            </div>
+            <div class="popular_slid_content">
+              <a href="{{ product.url }}" class="grid-product__meta">
+                <span class="grid-product__title">{{ product.title }}</span>
+                <span class="grid-product__price-wrap ">
+                  <span class="grid-product__price">
+                    <span class="visually-hidden">Sale price</span>
+                    <span class="sale-price"><span class="long-dash">{{ cart.currency.iso_code }} </span> {{ product.price_min | money }}</span>
+                    {% if product.compare_at_price > product.price %}<span class="regular-price"><span class="long-dash">{{ cart.currency.iso_code }}</span> {{ product.compare_at_price | money }}</span>{% endif %}
+                      <div class="yotpo bottomLine"  data-product-id="{{ product.id }}"></div>
+                  </span>
+                </span>
+              </a>
+             
+               {% if product.metafields.custom_fields["data"] == blank and product.metafields.custom_fields["calls"] == blank and product.metafields.custom_fields["sms"] == blank and product.metafields.custom_fields["plan_validity"] == blank %}
+   <div class="desc-sec more_details_otr">
+      <a href="{{ product.url }}"><p>More Details <img class="lazyload hs-lazyload hs-id-4c5da94a" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/more_options.svg?8830" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></p></a>
+    </div>
+    {% else %} 
+    <div class="desc-sec more_details_otr">
+      <p>More Details <a href="javascript:void(0);"><img class="lazyload hs-lazyload hs-id-4c5da94a" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/more_options.svg?8830" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="/></a></p>
+      
+      
+      <div class="more_deails_inner">
+          <div class="accordion" id="section2"></div>
+          <div class="container">
+            <div class="content"></div>
+          </div>
+        	{% if product.metafields.custom_fields["data"] != blank %}
+        		<div class="panel_acc_outer">
+                  <button class="accordion">Data</button>
+                  <div class="panel">
+                  	{{ product.metafields.custom_fields["data"] }}
+                  </div>
+                </div>
+            {% endif %}
+        	{% if product.metafields.custom_fields["calls"] != blank %}
+        		<div class="panel_acc_outer">
+                  <button class="accordion">Calls</button>
+                  <div class="panel">
+                  	{{ product.metafields.custom_fields["calls"] }}
+                  </div>
+                </div>
+            {% endif %}
+        	{% if product.metafields.custom_fields["sms"] != blank %}
+              <div class="panel_acc_outer">
+                <button class="accordion">SMS</button>
+                <div class="panel">
+                	{{ product.metafields.custom_fields["sms"] }}
+                </div>
+              </div>
+        	{% endif %}
+        	{% if product.metafields.custom_fields["plan_validity"] != blank %}
+              <div class="panel_acc_outer">
+                <button class="accordion">Plan Validity</button>
+                <div class="panel">
+                	{{ product.metafields.custom_fields["plan_validity"] }}
+                </div>
+              </div>
+        	{% endif %}
+        	
+      </div>
+    </div>
+    {% endif %}
+            </div>
+          </div>
+        </div>
+     {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Featured Slider"
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": {
+        "da": "Overskrift",
+        "de": "Überschrift",
+        "en": "Heading",
+        "es": "Título",
+        "fi": "Otsake",
+        "fr": "Titre",
+        "hi": "शीर्षक",
+        "it": "Heading",
+        "ja": "見出し",
+        "ko": "제목",
+        "ms": "Tajuk",
+        "nb": "Overskrift",
+        "nl": "Kop",
+        "pt-BR": "Título",
+        "pt-PT": "Título",
+        "sv": "Rubrik",
+        "th": "ส่วนหัว",
+        "zh-CN": "标题",
+        "zh-TW": "標題"
+      },
+      "default": {
+        "da": "Udvalgt kollektion",
+        "de": "Featured Kategorie",
+        "en": "Featured collection",
+        "es": "colección destacada",
+        "fi": "Esittelyssä oleva kokoelma",
+        "fr": "Collection en vedette",
+        "hi": "फ़ीचर्ड कलेक्शन",
+        "it": "Collezione in evidenza",
+        "ja": "特集コレクション",
+        "ko": "추천 컬렉션",
+        "ms": "Koleksi yang ditampilkan",
+        "nb": "Fremhevet samling",
+        "nl": "Uitgelichte collectie",
+        "pt-BR": "Coleção em destaque",
+        "pt-PT": "Coleção em destaque",
+        "sv": "Utvald kollektion",
+        "th": "คอลเลกชันแนะนำ",
+        "zh-CN": "特色产品系列",
+        "zh-TW": "精選商品系列"
+      }
+    },
+    {
+      "type": "collection",
+      "id": "home_featured_products",
+      "label": {
+        "da": "Samling",
+        "de": "Kategorie",
+        "en": "Collection",
+        "es": "colección",
+        "fi": "Kokoelma",
+        "fr": "Collection",
+        "hi": "कलेक्शन",
+        "it": "collezione",
+        "ja": "コレクション",
+        "ko": "컬렉션",
+        "ms": "Koleksi",
+        "nb": "Samling",
+        "nl": "Collectie",
+        "pt-BR": "Coleção",
+        "pt-PT": "Coleção",
+        "sv": "Produktserie",
+        "th": "คอลเลกชัน",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      }
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "en": "Featured collection Slider"
+      },
+      "category": {
+        "da": "Samling",
+        "de": "Kategorie",
+        "en": "Collection",
+        "es": "Colección",
+        "fi": "Kokoelma",
+        "fr": "Collection",
+        "hi": "कलेक्शन",
+        "it": "Collezione",
+        "ja": "コレクション",
+        "ko": "컬렉션",
+        "ms": "Koleksi",
+        "nb": "Samling",
+        "nl": "Collectie",
+        "pt-BR": "Coleção",
+        "pt-PT": "Coleção",
+        "sv": "Produktserie",
+        "th": "คอลเลกชัน",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      }
+    }
+  ],
+  "blocks": []
+}
+{% endschema %}

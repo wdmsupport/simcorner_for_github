@@ -1,0 +1,66 @@
+<!-- /templates/page.liquid -->
+<div class="grid">
+
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h1>Travel Accessories and Necessities | SimCorner</h1>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.travel-accessories-and-necessities.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+  
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h2>Travel Journals</h2>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.travel-journals.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+  
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h2>Packing Cubes</h2>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.packing-cubes.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+  
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h2>Laundry Bags</h2>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.laundry-bags.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+  
+  
+  
+</div>

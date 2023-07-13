@@ -1,0 +1,138 @@
+<div class="custom-fields-section">
+  
+    {% if resource_type == "collections" %}
+    <div class="custom-fields-section__collections">
+      {% for block in blocks %}
+      {% if block.type contains "cf_" %}
+      <div class="custom-fields-section__item custom-fields-section__item--{{ block.type }} custom-fields-section__item--{{ block.type }}--{{ block.settings.key }}" {{ block.shopify_attributes }}>
+        {% case block.settings.key %}
+        
+          {% when "parent_collection_url" %}
+            {% render "custom_fields.collections.parent_collection_url" %}
+        
+          {% when "parent_collection_url_2" %}
+            {% render "custom_fields.collections.parent_collection_url_2" %}
+        
+          {% when "home_collection_background" %}
+            {% render "custom_fields.collections.home_collection_background" %}
+        
+          {% when "accordian_collection" %}
+            {% render "custom_fields.collections.accordian_collection" %}
+        
+        {% endcase %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  
+    {% if resource_type == "pages" %}
+    <div class="custom-fields-section__pages">
+      {% for block in blocks %}
+      {% if block.type contains "cf_" %}
+      <div class="custom-fields-section__item custom-fields-section__item--{{ block.type }} custom-fields-section__item--{{ block.type }}--{{ block.settings.key }}" {{ block.shopify_attributes }}>
+        {% case block.settings.key %}
+        
+          {% when "faq" %}
+            {% render "custom_fields.pages.faq" %}
+        
+        {% endcase %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  
+    {% if resource_type == "products" %}
+    <div class="custom-fields-section__products">
+      {% for block in blocks %}
+      {% if block.type contains "cf_" %}
+      <div class="custom-fields-section__item custom-fields-section__item--{{ block.type }} custom-fields-section__item--{{ block.type }}--{{ block.settings.key }}" {{ block.shopify_attributes }}>
+        {% case block.settings.key %}
+        
+          {% when "benefits" %}
+            {% render "custom_fields.products.benefits" %}
+        
+          {% when "call__text" %}
+            {% render "custom_fields.products.call__text" %}
+        
+          {% when "calls" %}
+            {% render "custom_fields.products.calls" %}
+        
+          {% when "compatability_" %}
+            {% render "custom_fields.products.compatability_" %}
+        
+          {% when "countries_coverage" %}
+            {% render "custom_fields.products.countries_coverage" %}
+        
+          {% when "data" %}
+            {% render "custom_fields.products.data" %}
+        
+          {% when "data_features" %}
+            {% render "custom_fields.products.data_features" %}
+        
+          {% when "domestic_shipping_in_australia" %}
+            {% render "custom_fields.products.domestic_shipping_in_australia" %}
+        
+          {% when "how_it_works" %}
+            {% render "custom_fields.products.how_it_works" %}
+        
+          {% when "how_to_activate_this_sim_card" %}
+            {% render "custom_fields.products.how_to_activate_this_sim_card" %}
+        
+          {% when "how_to_recharge" %}
+            {% render "custom_fields.products.how_to_recharge" %}
+        
+          {% when "international_shipping" %}
+            {% render "custom_fields.products.international_shipping" %}
+        
+          {% when "manual" %}
+            {% render "custom_fields.products.manual" %}
+        
+          {% when "plan_validity" %}
+            {% render "custom_fields.products.plan_validity" %}
+        
+          {% when "product_name" %}
+            {% render "custom_fields.products.product_name" %}
+        
+          {% when "sms" %}
+            {% render "custom_fields.products.sms" %}
+        
+          {% when "sim_card_size" %}
+            {% render "custom_fields.products.sim_card_size" %}
+        
+          {% when "travelling_with_friends_and_fa" %}
+            {% render "custom_fields.products.travelling_with_friends_and_fa" %}
+        
+          {% when "cart_date_text" %}
+            {% render "custom_fields.products.cart_date_text" %}
+        
+          {% when "faq" %}
+            {% render "custom_fields.products.faq" %}
+        
+          {% when "yotpo_product_id" %}
+            {% render "custom_fields.products.yotpo_product_id" %}
+        
+          {% when "domestic_shipping_in_canada" %}
+            {% render "custom_fields.products.domestic_shipping_in_canada" %}
+        
+          {% when "domestic_shipping_in_new_zeala" %}
+            {% render "custom_fields.products.domestic_shipping_in_new_zeala" %}
+        
+          {% when "domestic_shipping_in_europe" %}
+            {% render "custom_fields.products.domestic_shipping_in_europe" %}
+        
+          {% when "domestic_shipping_in_uk" %}
+            {% render "custom_fields.products.domestic_shipping_in_uk" %}
+        
+          {% when "domestic_shipping_in_usa" %}
+            {% render "custom_fields.products.domestic_shipping_in_usa" %}
+        
+        {% endcase %}
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+  
+</div>

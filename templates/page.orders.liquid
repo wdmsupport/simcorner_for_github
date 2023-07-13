@@ -1,0 +1,83 @@
+<!-- /templates/page.liquid -->
+<div class="grid">
+  <div class="grid__item ">
+
+    <header class="section-header text-center">
+      <h1>{{ page.title }}</h1>
+      <hr class="hr--small">
+    </header>
+
+    <div class="grid">
+      <div class="grid__item one-third medium-down--one-whole account_details_left">
+        <h3>My Account</h3>
+        <ul>
+          <li><a href="/account">Account Dashboard</a></li>
+          <li><a href="/pages/password-reset">Password Reset</a></li>
+          <li><a href="/account/addresses">Address Book</a></li>
+          <li><strong><a href="/pages/orders">My Orders</a></strong></li>
+          <li><a href="/account/logout">Log Out</a></li>
+        </ul>
+
+      </div>
+      
+      
+      
+      <div class="grid__item large--four-fifths push--large--one-tenth account_data_right">
+        <div class="rte rte--nomargin rte--indented-images">
+          <div class="table-wrap">
+            {% paginate customer.orders by 20 %}
+
+            <div class="grid__item">
+              <h2 class="h3">{{ 'customer.orders.title' | t }}</h2>
+
+              {% comment %}
+              If we have past orders, loop through each one
+              {% endcomment %}
+              {% if customer.orders.size != 0 %}
+
+              <div class="table-wrap">
+                <table class="full table--responsive">
+                  <thead>
+                    <tr>
+                      <th>{{ 'customer.orders.order_number' | t }}</th>
+                      <th>{{ 'customer.orders.date' | t }}</th>
+                      <th>{{ 'customer.orders.payment_status' | t }}</th>
+                      <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+                      <th>{{ 'customer.orders.total' | t }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for order in customer.orders %}
+                    <tr class="table__section">
+                      <td data-label="{{ 'customer.orders.order_number' | t }}">{{ order.name | link_to: order.customer_url }}</td>
+                      <td data-label="{{ 'customer.orders.date' | t }}">{{ order.created_at | date: format: 'date' }}</td>
+                      <td data-label="{{ 'customer.orders.payment_status' | t }}">{{ order.financial_status_label }}</td>
+                      <td data-label="{{ 'customer.orders.fulfillment_status' | t }}">{{ order.fulfillment_status_label }}</td>
+                      <td data-label="{{ 'customer.orders.total' | t }}">{{ order.total_price | money }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+
+              </div>
+
+              <hr class="hr--clear">
+
+              {% else %}
+
+              <p>{{ 'customer.orders.none' | t }}</p>
+
+              {% endif %}
+            </div>
+            {% if paginate.pages > 1 %}
+            {% include 'pagination' %}
+            {% endif %}
+            {% endpaginate %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

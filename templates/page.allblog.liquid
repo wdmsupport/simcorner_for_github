@@ -1,0 +1,97 @@
+<!-- /templates/allblog.liquid -->
+<style>
+  .article__grid-image-wrapper::after {
+    padding-bottom: {{ article.image.aspect_ratio | times: 100 }}%;
+  }
+</style>
+
+<div class="grid all-blog test"> 
+  <header class="section-header text-center">
+    <h1>{{ page.title }}</h1>
+    <hr class="hr--small">
+  </header>
+
+  <div class="grid">
+    <div class="grid__item large--four-fifths push--large--one-tenth">
+      <div class="rte rte--nomargin rte--indented-images">
+        {%- paginate blogs.news.articles by 8 -%}
+        {% for article in blogs.news.articles %}
+          <div class="blog_main_oter">    
+            <!--div class="grid__item large--two-tenths push--large--one-tenth pub_date">
+              <time datetime="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}" class="date">{{ article.published_at | date: format: 'date' }}</time>
+            </div-->
+            <!-- title -->
+            <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+            <p>{{ article.content | strip_html | truncate: 200}}</p>
+            {% if article.image %}
+              {% capture img_id %}ArticleImage-{{ article.image.id }}{% endcapture %}
+              {% capture img_wrapper_id %}ArticleImageWrapper-{{ article.image.id }}{% endcapture %}
+              {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+              {% include 'image-style' with image: article.image, small_style: true, width: 345, height: 345, wrapper_id: img_wrapper_id, img_id: img_id %}
+              <div id="{{ img_wrapper_id }}" class="article__grid-image-wrapper js">
+                <div class="article__grid-image-container">
+                  <img id="{{ img_id }}"
+                       class="article__grid-image lazyload"
+                       src="{{ article.image | img_url: '300x300' }}"
+                       data-src="{{ img_url }}"
+                       data-widths="[180, 360]"
+                       data-aspectratio="{{ article.image.aspect_ratio }}"
+                       data-sizes="auto"
+                       alt="">
+                </div>
+              </div>
+              <noscript>
+                <div class="article__grid-image-wrapper">
+                  {{ article | img_url: '345x345', scale: 2 | img_tag: article.title, 'article__grid-image' }}
+                </div>
+              </noscript>
+            {% endif %}
+             <a href="{{ article.url }}" class="text-colored read_article">Read Article</a>
+  </div>
+{% endfor %}
+          <div class="pagination_outer">{{ paginate | default_pagination: next: '<img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/sub_menu_arrow.svg?5503"/>', previous: '<img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/sub_menu_arrow.svg?5503"/>' }}</div>
+{%- endpaginate -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+ {%- capture main_entity_microdata -%}
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "{{ article.url }}",
+    "articleSection": {{ blog.title | json }},
+    "keywords": "{{ article.tags | join: ', ' }}",
+    "headline": {{ article.title | json }},
+    "description": {{ article.excerpt_or_content | strip_html | truncatewords: 25 | json }},
+    "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%T' }}",
+    "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%T' }}",
+    "dateModified": "{{ article.published_at | date: '%Y-%m-%dT%T' }}",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https:{{ page_image | image_url: width: 1024 }}",
+      "image": "https:{{ page_image | image_url: width: 1024 }}",
+      "name": {{ page_image.alt | json }},
+      "width": "1024",
+      "height": "1024"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "SimCorner"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+    },
+    "commentCount": {{ article.comments_count }},
+    "comment": [
+      {%- for comment in article.comments limit: 5 -%}
+        {
+          "@type": "Comment",
+          "author": {{ comment.author | json }},
+          "datePublished": "{{ comment.created_at | date: '%Y-%m-%dT%T' }}",
+          "text": {{ comment.content | json }}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  {%- endcapture -%}

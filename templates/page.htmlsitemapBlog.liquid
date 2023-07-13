@@ -1,0 +1,39 @@
+<!-- /templates/page.liquid -->
+<div class="grid">
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+
+    <header class="section-header text-center">
+      <h1>{{ page.title }}</h1>
+      <hr class="hr--small">
+    </header>
+
+    <div class="grid">
+      <div class="grid__item large--four-fifths push--large--one-tenth">
+        <div class="rte rte--nomargin rte--indented-images">
+          {%- comment -%} Start of HTML SiteMap code {%- endcomment -%}
+<div class="row">
+  <h2>Blog Posts</h2>
+   <ul>
+      {% assign blog_handles = "news" | split: "," %}
+ 
+         {% for handle in blog_handles %}
+ 
+         {% for article in blogs[handle].articles %}
+            <li>
+               <a href="{{ article.url }}">{{ article.title }}</a>
+            </li>
+            {% endfor %}
+ 
+      {% endfor %}
+  </ul>
+   
+</div>
+{%- comment -%}
+    End of HTML SiteMap code
+{%- endcomment -%}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

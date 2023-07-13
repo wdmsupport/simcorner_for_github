@@ -1,0 +1,93 @@
+{% layout none %}
+
+{% capture colresults %}
+
+{% assign searchterms = search.terms | replace: "*", ""  %}
+  {% for collection in collections %}
+{% assign coltitle = collection.title | downcase %}
+ {% if coltitle == searchterms %}
+
+		 { 
+          "title"    : {{ collection.title | json }},
+          "id"    : {{ collection.id | json }},
+          "url"      : {{ collection.url | json }},
+		 "thumbnail": {{  searchterms | append: ".svg" | asset_url | json }}
+ 		
+   	 	},
+   {% endif %}
+    
+ 
+
+
+  {% endfor %}
+{% endcapture %}
+
+
+{% capture collectionheading %}
+{% if colresults != blank %}
+{ 
+          "title"    : "Collections",
+          "id"    : "customid",
+          "url"      : "",
+		 "thumbnail": ""
+ 		
+   	 	},
+
+{% endif %}
+
+{% endcapture %}
+{% assign collectiongrp = colresults | prepend: collectionheading %}
+
+
+
+
+
+
+
+
+{% capture results %}
+  {% for item in search.results  %}
+    {% assign product = item %}
+
+  {% for collection in product.collections %}
+      {% if collection.title contains search.terms %}
+		  {{collection.title}}
+          {% assign cname = collection.title %}
+      {% endif %}
+  {% endfor %} 
+	{ 
+	  "title"    : {{ product.title | json }},
+	  "id"    : {{ product.id | json }},
+      "url"      : {{ product.url | within: product.collections.last | json }},
+	  "surl"      : {{ product.url | json }},
+      "thumbnail": {{ product.featured_image.src | product_img_url: 'medium' | json }},
+      "price": {{ product.price | money | json }},
+	  "collection": {{product.collections.first.title | json }},
+      "collectionurl": {{product.collections.first.title | json }}
+    }
+    {% unless forloop.last %},{% endunless %}
+  {% endfor %}
+{% endcapture %}
+
+{% capture productheading %}
+{% if results != blank %}
+{ 
+          "title"    : "Products",
+          "id"    : "customid",
+          "url"      : "",
+		 "thumbnail": ""
+ 		
+   	 	},
+
+{% endif %}
+
+{% endcapture %}
+{% assign productgrp = results | prepend: productheading %}
+
+
+{% assign res = collectiongrp | append: productgrp %}
+
+{
+  "results_count": {{ search.results_count }},
+  "results": [{{ res }}]
+}

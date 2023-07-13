@@ -1,0 +1,100 @@
+<!-- /templates/product.liquid -->
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template.liquid
+{% endcomment %}
+
+{% assign description_parts = product.description | split: '<!--split-->' %}
+{%comment%}
+ 	Amount of parts: {{ description_parts.size }}
+	Index of last part: {% assign index_last = description_parts.size | minus: 1 %}
+	First part: {{ description_parts[0] }}
+	Second part: {{ description_parts[1] }}
+	Third part: {{ description_parts[2] }}
+	Fourth part: {{ description_parts[3] }}
+{%endcomment%}
+
+{% section 'product-template' %}
+
+
+{% unless product.tags contains 'accessories'%}
+  <div class="static_html">
+    <h5 style="text-align: center;"><strong>Please read "Things to Know" and "FAQs" section below for more information before purchasing</strong></h5>
+     <!--<table width="100%">
+      <tbody>
+        <tr style="height: 13.6px;">
+          <td style="width: 33%; height: 13.6px;">
+              <p style="text-align: center;"><span data-cke-widget-wrapper="1" data-cke-filter="off" class="cke_widget_wrapper cke_widget_inline cke_widget_image cke_image_nocaption cke_widget_selected" data-cke-display-name="image" data-cke-widget-id="2" role="region" aria-label="order_sim image widget" tabindex="-1" contenteditable="false"><img alt="order_sim" class="cke_widget_element" data-cke-saved-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/iconfinder_cart_798735.svg?15228" data-cke-widget-data="%7B%22hasCaption%22%3Afalse%2C%22src%22%3A%22https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0179%2F4388%2F7926%2Ffiles%2Fcart_order.svg%3F13136%22%2C%22alt%22%3A%22order_sim%22%2C%22width%22%3A%22%22%2C%22height%22%3A%22%22%2C%22lock%22%3Atrue%2C%22align%22%3A%22none%22%2C%22data-entity-type%22%3A%22%22%2C%22data-entity-uuid%22%3A%22%22%2C%22classes%22%3Anull%7D" data-cke-widget-keep-attr="0" data-cke-widget-upcasted="1" data-entity-type="" data-entity-uuid="" data-widget="image" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/iconfinder_cart_798735.svg?15228"/><span class="cke_reset cke_widget_drag_handler_container"></span><span class="cke_image_resizer" title="Click and drag to resize">​</span></span></p>
+              <p style="text-align: center;"><strong>1. Order online</strong><br><br><span>Place your order online through SimCorner</span></p>
+          </td>
+          <td style="width: 33%; height: 13.6px;">
+            <p style="text-align: center;"><span data-cke-widget-wrapper="1" data-cke-filter="off" class="cke_widget_wrapper cke_widget_inline cke_widget_image cke_image_nocaption cke_widget_selected" data-cke-display-name="image" data-cke-widget-id="1" role="region" aria-label="order_sim image widget" tabindex="-1" contenteditable="false"><img alt="order_sim" class="cke_widget_element" data-cke-saved-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/iconfinder_delivery_2_2769903.svg?15228" data-cke-widget-data="%7B%22hasCaption%22%3Afalse%2C%22src%22%3A%22https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0179%2F4388%2F7926%2Ffiles%2Fdelivery_cart.svg%3F13136%22%2C%22alt%22%3A%22order_sim%22%2C%22width%22%3A%22%22%2C%22height%22%3A%22%22%2C%22lock%22%3Atrue%2C%22align%22%3A%22none%22%2C%22data-entity-type%22%3A%22%22%2C%22data-entity-uuid%22%3A%22%22%2C%22classes%22%3Anull%7D" data-cke-widget-keep-attr="0" data-cke-widget-upcasted="1" data-entity-type="" data-entity-uuid="" data-widget="image" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/iconfinder_delivery_2_2769903.svg?15228"/><span class="cke_reset cke_widget_drag_handler_container"></span><span class="cke_image_resizer" title="Click and drag to resize">​</span></span></p>
+            <p style="text-align: center;"><strong>2. Receive</strong> <br><br><span>Receive your Sim in the mail before you depart</span></p>
+          </td>
+          <td style="width: 33%; height: 13.6px;">
+            
+            <p style="text-align: center;"><span data-cke-widget-wrapper="1" data-cke-filter="off" class="cke_widget_wrapper cke_widget_inline cke_widget_image cke_image_nocaption cke_widget_selected" data-cke-display-name="image" data-cke-widget-id="0" role="region" aria-label="order_sim image widget" tabindex="-1" contenteditable="false"><img alt="order_sim" class="cke_widget_element" data-cke-saved-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/iconfinder_air_delivery_2769901.svg?15228" data-cke-widget-data="%7B%22hasCaption%22%3Afalse%2C%22src%22%3A%22https%3A%2F%2Fcdn.shopify.com%2Fs%2Ffiles%2F1%2F0179%2F4388%2F7926%2Ffiles%2Fair_delivery.svg%3F13136%22%2C%22alt%22%3A%22order_sim%22%2C%22width%22%3A%22%22%2C%22height%22%3A%22%22%2C%22lock%22%3Atrue%2C%22align%22%3A%22none%22%2C%22data-entity-type%22%3A%22%22%2C%22data-entity-uuid%22%3A%22%22%2C%22classes%22%3Anull%7D" data-cke-widget-keep-attr="0" data-cke-widget-upcasted="1" data-entity-type="" data-entity-uuid="" data-widget="image" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/iconfinder_air_delivery_2769901.svg?15228"/><span class="cke_reset cke_widget_drag_handler_container"></span><span class="cke_image_resizer" title="Click and drag to resize">​</span></span><br></p>
+            <p style="text-align: center;"><strong>3. Stay connected</strong> <br><br><span>Insert your Sim card when you land and stay connected</span></p>
+          </td>
+        </tr>
+      </tbody>
+    </table-->
+  </div>  
+{% endunless %}
+
+
+
+{% section 'product-attributes' %}
+
+
+{% unless product.tags contains 'accessories' %}
+		{% section 'product-recommendations' %}
+{% endunless %}
+
+<div id="shopify-section-product-recommendations" class="shopify-section">
+  <div class="section-header text-center">
+    <h2 class="h1 section-header__title">Recommended Travel Accessories</h2>
+    <hr class="hr--small">
+  </div>
+  <div class="product-recommendations custom_related">
+    <div class="grid-uniform">
+      {% assign grid_item_width = 'small--one-half medium--one-half large--one-quarter' %}
+      {%- for product in collections.all.products -%}
+        {% if product.tags contains 'recommended_accessories' %}
+              {% include 'product-grid-item-recommended' %}
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+<script>
+ //yotpo.initWidgets(); 
+ </script>
+{% comment %}
+{% if collection %}
+  <hr class="hr--clear">
+  <div class="text-center">
+    <a href="{{ collection.url }}" class="return-link">&larr; {{ 'products.general.collection_return' | t: collection: collection.title }}</a>
+  </div>
+{% endif %}
+{% endcomment %}
+<div class="product-description">
+      		{{ description_parts[0] }}
+
+</div>
+
+<!--div class="single_pro_bottom_ul">
+	<ul>
+		<li>
+			<span><img alt="shipping_img" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/cart_static.svg?11126"/></span>
+			<p>Free Standard Shipping</p>
+		</li>
+		<li>
+			<span><img alt="support_img" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/music_static.svg?11126"/></span>
+			<p>Customer Support</p>
+		</li>
+		<li>
+			<span><img alt="returns_img" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/smile_static.svg?11126"/></span>
+			<p>Stress-free Returns</p>
+		</li>
+	</ul>
+</div-->

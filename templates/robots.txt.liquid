@@ -1,0 +1,25 @@
+{% for group in robots.default_groups %}
+  {{- group.user_agent -}}
+
+  {% for rule in group.rules %}
+    {{- rule -}}
+  {% endfor %}
+
+   {%- if group.user_agent.value == '*' -%}
+    {{ 'Disallow: /collections/all*' }}
+    {{ 'Disallow: /*?q=*' }}
+    {{ 'Disallow: /blogs/*/tagged/*' }}
+	{{ 'Disallow: /store-locations' }}
+  {%- endif -%}
+  
+  {%- if group.user_agent.value == 'adsbot-google' -%}
+    {{ 'Disallow: /collections/all*' }}
+    {{ 'Disallow: /*?q=*' }}
+    {{ 'Disallow: /blogs/news/tagged/*' }}
+	{{ 'Disallow: /store-locations' }}
+  {%- endif -%}
+
+  {%- if group.sitemap != blank -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{% endfor %}

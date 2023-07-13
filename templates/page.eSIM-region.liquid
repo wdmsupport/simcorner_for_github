@@ -1,0 +1,82 @@
+<!-- /templates/page.liquid -->
+
+<div class="grid page_regions_main">
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+
+
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h1>Travel eSIM Options | SimCorner</h1>
+      </div>
+    </div>
+  </div>
+  
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h2>Europe eSIMs </h2>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.europe-esim.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+  
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h2>USA eSIMs</h2>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.usa-esim.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h2>Asia eSIMs</h2>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.asia-esim.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+  
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+    <div class="grid-uniform continent_sim_cards">
+      <div class="innerpage_heading">
+        <h2>Internationl eSIMs</h2>
+      </div>
+      <div class="carousel_main">
+           <div class="carousel" id="carousel_one">
+            {% for product in collections.internationl-esim.products %}
+                          {% include 'product-grid-item' %}
+             {% endfor %}
+      	</div>
+	  </div>
+    </div>
+  </div>
+
+  {% if collection.description != blank and current_tags == blank %}
+  <div class="collection_description">
+    {{ collection.description }}
+  </div> 
+{% endif %}
+  {% include 'collection-faq' %}
+    </div>
+  
+  
+</div>

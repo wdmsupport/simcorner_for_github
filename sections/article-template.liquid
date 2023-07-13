@@ -1,0 +1,386 @@
+<!-- /templates/article.liquid -->
+{% assign number_of_comments = article.comments_count %}
+
+{% if comment and comment.created_at %}
+  {% assign number_of_comments = article.comments_count | plus: 1 %}
+{% endif %}
+
+<div class="grid">
+  <div class="single_blog_outer">
+    <header class="section-header text-center" style="background-image:url({{ article.image | img_url: '' }})">
+        <h1>{{ article.title }}</h1>
+        <hr class="hr--small">
+        <p>
+          <span class="date"><time datetime="{{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' }}">{{ article.published_at | date: format: 'date' }}</time></span>
+        </p>
+      </header>
+   
+  </div>
+  
+<!-- Rich snippet blogposting -->  
+  {% comment %}
+Place at bottom of DOM, before </body>
+{% endcomment %}
+
+{% comment %}
+  Article structured data
+  https://developers.google.com/search/docs/data-types/articles
+{% endcomment %}
+
+{% if template contains 'article' %}
+  {%- capture article_description  -%}
+    {%- if article.excerpt != blank -%}
+      {{ article.excerpt | strip_html }}
+    {%- else -%}
+      {{ article.content | truncatewords: 100 | strip_html }}
+    {%- endif -%}
+  {%- endcapture -%}
+{% comment %}
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ shop.url }}{{ article.url }}"
+      },
+       "articleSection": {{ blog.title | json }},
+       "keywords": "{{ article.tags | join: ', ' }}",
+      "headline": {{ article.title | json }},
+      
+      {% if article.image %}
+        "image": {
+          "@type": "ImageObject",
+          "url": "https:{{ page_image | img_url: '1024x' }}",
+      		"image": "https:{{ page_image | img_url: '1024x' }}",
+      		"name": {{ page_image.alt | json }},
+      		"width": "1024",
+      		"height": "1024"
+        },
+        
+      {% endif %}
+      "articleBody": "{{ article.content | strip_html }}",
+      "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json}},
+      "dateModified": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' | json}},
+      "description": {{ article_description | json }}
+    }
+  </script>
+{% endcomment %}
+{% endif %}
+  
+  <!-- Rich snippet blogposting -->  
+  
+  
+  <article class="grid__item large--five-sixths push--large--one-twelfth article">
+ 
+    
+
+    <div class="grid">
+      
+      <div class="grid__item large--four-fifths push--large--one-tenth">
+
+        <div class="rte rte--indented-images">
+          
+          {{ article.content }}
+        </div>
+
+        <ul class="tags tags--article inline-list">
+          {% include 'tags-article' %}
+        </ul>
+
+        {% if section.settings.social_sharing_blog %}
+          {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+        {% endif %}
+        <div class="sharethis-inline-share-buttons"></div>
+
+        {% if blog.comments_enabled? %}
+
+          {% if number_of_comments > 0 %}
+            <hr class="hr--large">
+            <h2 class="h3 text-center">{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h2>
+            <hr class="hr--small hr--clear">
+          {% endif %}
+
+          {% paginate article.comments by 5 %}
+            {% comment %}
+              #comments is required, it is used as an anchor link by Shopify.
+            {% endcomment %}
+            <div id="comments">
+
+              {% if comment and comment.created_at %}
+                <p class="note form-success">
+                  {% if blog.moderated? %}
+                    {{ 'blogs.comments.success_moderated' | t }}
+                  {% else %}
+                    {{ 'blogs.comments.success' | t }}
+                  {% endif %}
+                </p>
+              {% endif %}
+
+              {% if number_of_comments > 0 %}
+                <ul class="no-bullets">
+                  {% comment %}
+                    If a comment was just submitted with no blank field, show it.
+                  {% endcomment %}
+                  {% if comment and comment.created_at %}
+                    <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+                      {% include 'comment' %}
+                    </li>
+                  {% endif %}
+
+                  {% comment %}
+                    Showing the rest of the comments.
+                  {% endcomment %}
+                  {% for comment in article.comments %}
+                    <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                      {% include 'comment' %}
+                    </li>
+
+                    {% unless forloop.last %}
+                      <li><hr class="hr--clear"></li>
+                    {% endunless %}
+                  {% endfor %}
+                </ul>
+
+                {% if paginate.pages > 1 %}
+                  {% include 'pagination' %}
+                {% endif %}
+
+              {% endif %}
+
+              <hr class="hr--large">
+
+              <h2 class="h3 text-center">{{ 'blogs.comments.title' | t }}</h2>
+              <hr class="hr--small hr--clear">
+
+              <div class="form-vertical">
+                {% form 'new_comment', article %}
+
+                  {{ form.errors | default_errors }}
+
+                  <div class="grid grid--small">
+                    <div class="grid__item large--one-half">
+                      <label for="CommentAuthor" class="hidden-label">{{ 'blogs.comments.name' | t }}</label>
+                      <input class="input-full{% if form.errors contains 'author' %} error{% endif %}" type="text" name="comment[author]" placeholder="{{ 'blogs.comments.name' | t }}" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words">
+                    </div>
+                    <div class="grid__item large--one-half">
+                      <label for="CommentEmail" class="hidden-label">{{ 'blogs.comments.email' | t }}</label>
+                      <input class="input-full{% if form.errors contains 'email' %} error{% endif %}" type="email" name="comment[email]" placeholder="{{ 'blogs.comments.email' | t }}" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                    </div>
+                  </div>
+
+                  <label for="CommentBody" class="hidden-label">{{ 'blogs.comments.message' | t }}</label>
+                  <textarea class="input-full{% if form.errors contains 'body' %} error{% endif %}" name="comment[body]" id="CommentBody" placeholder="{{ 'blogs.comments.message' | t }}">{{ form.body }}</textarea>
+
+                  <div class="text-center">
+                    {% if blog.moderated? %}
+                      <p>{{ 'blogs.comments.moderated' | t }}</p>
+                    {% endif %}
+
+                    <input type="submit" class="btn" value="{{ 'blogs.comments.post' | t }}">
+                  </div>
+
+                {% endform %}
+              </div>
+
+            </div>
+          {% endpaginate %}
+        {% endif %}
+
+        
+        <div class="nextPreviousHolder">
+
+ {% assign current_found = false %}
+    {% assign done = false %}
+    {% for a in blog.articles %}
+    	{% if current_found and done == false %}
+    		{% assign next_article = a %}
+    		{% assign done = true %}
+    	{% endif %}
+    	{% unless done %}
+    		{% if a.id == article.id %}
+    			{% assign current_found = true %}
+    		{% else %}
+    			{% assign prev_article = a %}
+    		{% endif %}
+    	{% endunless %}
+    {% endfor %}
+    
+    {% if prev_article %}
+		<div class="nextPreviousBtn">
+    	<a href="{{ prev_article.url }}">
+			<div class="leftArrow"></div>
+			<div>
+		<span>Next Article:</span>
+			<p>{{ prev_article.title }}</p>
+			</div>
+      </a>
+		</div>
+    {% endif %}
+
+    {% if next_article %}
+		<div class="nextPreviousBtn">
+    	<a href="{{ next_article.url }}">
+			<div>
+        <span>Previous Article:</span> 
+			<p>{{ next_article.title }}</p>
+				</div>
+			<div class="rightArrow"></div>
+      </a>
+			</div>
+    {% endif %}
+
+</div>
+        
+      </div>
+    </div>
+
+  </article>
+  <div class="rekated_post_sec">
+  {% assign related_posts = "" %}
+    <div class="section-header">
+    	<h2 class="rich-text__heading--medium section-header__title h1">Related Blog</h2>
+    </div>
+    
+{% for articlex in  blogs.news.articles limit:3 %}
+ 
+  {% if articlex.title != article.title %}
+    {% capture post %}
+  		<div class="related_dtl_main">
+         <div class="related_image">
+  		<a href="{{ articlex.url }}" class="text-colored">
+        
+                    
+           {% if articlex.image %}
+                        	<div class="hero-image-new"><img src="{{ articlex | img_url: 'large', crop: 'center', scale: 2 }}"/></div> 
+                        {% else %}
+                             <div class="hero-image-new"><img src="//cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_1024x.gif"></div>     
+                        {% endif %}
+        </a>		
+          </div>
+          <div class="related_content">
+          <h3>
+              		<a href="{{ articlex.url }}">{{ articlex.title }}</a>
+          </h3>
+		  </div>
+  </div>
+    {% endcapture %}
+    {% assign related_posts = related_posts | append:post %}
+  {% endif %}
+{% endfor %}
+
+    {% if related_posts.size > 0 %}
+      {{ related_posts }}
+    {% else %}
+    <p>No related posts!</p>
+    {% endif %}  
+  </div>
+</div>
+
+
+<div class="text-center blog_view_more">
+  <a href="{{ blog.url }}" class="return-link"><b>View More</b> <img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/sub_menu_arrow.svg?5503"/></a>
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "da": "Artikelsider",
+    "de": "Artikelseiten",
+    "en": "Article pages",
+    "es": "Páginas del artículo",
+    "fi": "Artikkelisivut",
+    "fr": "Pages d'articles",
+    "hi": "लेख पेज",
+    "it": "Pagine articoli",
+    "ja": "記事ページ",
+    "ko": "문서 페이지",
+    "ms": "Halaman artikel",
+    "nb": "Artikkelsider",
+    "nl": "Artikelpagina's",
+    "pt-BR": "Páginas do artigo",
+    "pt-PT": "Páginas de artigo",
+    "sv": "Artikelsidor",
+    "th": "หน้าบทความ",
+    "zh-CN": "文章页面",
+    "zh-TW": "文章頁面"
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "social_sharing_blog",
+      "label": {
+        "da": "Vis knapper til deling på sociale medier",
+        "de": "Social-Sharing-Schaltflächen anzeigen",
+        "en": "Show social sharing buttons",
+        "es": "Mostrar botones para compartir en redes sociales",
+        "fi": "Näytä sosiaalisen median jakamispainikkeet",
+        "fr": "Afficher les boutons de partage social",
+        "hi": "सोशल शेयरिंग बटन दिखाएं",
+        "it": "Mostra i pulsanti per la condivisione sui social",
+        "ja": "ソーシャル共有ボタンを表示する",
+        "ko": "소셜 공유 버튼 표시",
+        "ms": "Tunjukkan butang perkongsian sosial",
+        "nb": "Vis knapper for deling på sosiale medier",
+        "nl": "Knoppen voor sociaal delen weergeven",
+        "pt-BR": "Exibir botões de compartilhamento em redes sociais",
+        "pt-PT": "Mostrar botões de partilha nas redes sociais",
+        "sv": "Visa knappar för delning i sociala medier",
+        "th": "แสดงปุ่มสำหรับแชร์ลงโซเชียล",
+        "zh-CN": "显示社交分享按钮",
+        "zh-TW": "顯示社群分享按鈕"
+      },
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": {
+        "da": "Vis knapper til deling på sociale medier",
+        "de": "Social-Sharing-Schaltflächen anzeigen",
+        "en": "Show social sharing buttons",
+        "es": "Mostrar botones para compartir en redes sociales",
+        "fi": "Näytä sosiaalisen median jakamispainikkeet",
+        "fr": "Afficher les boutons de partage social",
+        "hi": "सोशल शेयरिंग बटन दिखाएं",
+        "it": "Mostra i pulsanti per la condivisione sui social",
+        "ja": "ソーシャル共有ボタンを表示する",
+        "ko": "소셜 공유 버튼 표시",
+        "ms": "Tunjukkan butang perkongsian sosial",
+        "nb": "Vis knapper for deling på sosiale medier",
+        "nl": "Knoppen voor sociaal delen weergeven",
+        "pt-BR": "Exibir botões de compartilhamento em redes sociais",
+        "pt-PT": "Mostrar botões de partilha nas redes sociais",
+        "sv": "Visa knappar för delning i sociala medier",
+        "th": "แสดงปุ่มสำหรับแชร์ลงโซเชียล",
+        "zh-CN": "显示社交分享按钮",
+        "zh-TW": "顯示社群分享按鈕"
+      },
+      "default": true,
+      "info": {
+        "da": "Rediger SoMe-konti i Generelle indstillinger",
+        "de": "Bearbeiten Sie Social-Media-Konten in den allgemeinen Einstellungen",
+        "en": "Edit social accounts in General settings",
+        "es": "Editar cuentas de las redes sociales en la configuración general",
+        "fi": "Muokkaa sosiaalisen median tilejä kohdassa Yleiset asetukset",
+        "fr": "Modifier les comptes sociaux dans les paramètres généraux",
+        "hi": "सामान्य सेटिंग में सोशल अकाउंट संपादित करें",
+        "it": "Modifica gli account social nelle Impostazioni generali",
+        "ja": "一般設定でソーシャルアカウントを編集する",
+        "ko": "일반 설정에서 소셜 계정 수정",
+        "ms": "Edit akaun sosial dalam tetapan Umum",
+        "nb": "Rediger sosiale kontoer i Generelle innstillinger",
+        "nl": "Social media-accounts in Algemene instellingen bewerken",
+        "pt-BR": "Edite as contas de redes sociais nas configurações gerais",
+        "pt-PT": "Editar as contas de redes sociais nas definições gerais",
+        "sv": "Redigera sociala konton i Allmänna inställningar",
+        "th": "แก้ไขบัญชีผู้ใช้โซเชียลมีเดียในการตั้งค่าทั่วไป",
+        "zh-CN": "在“通用”设置中编辑社媒帐户",
+        "zh-TW": "前往「一般」設定編輯社群帳戶"
+      }
+    }
+  ]
+}
+{% endschema %}

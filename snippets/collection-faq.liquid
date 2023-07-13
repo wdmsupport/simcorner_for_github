@@ -1,0 +1,24 @@
+
+{% if collection.metafields.custom_fields["accordian_collection"] != blank %}
+<div class="faq_col_main">
+<div class="ul_tabs_inner">
+   <div class="accordion"></div>  
+  <h3>FAQs</h3>
+{% assign data_attr = shop.metafields._cf_collections["accordian_collection"].data_attr %}
+<div class="cf-widget-accordian-collection cf-widget__accordion cf-auto-init" {{ data_attr }}>
+    {% for item in collection.metafields.custom_fields["accordian_collection"] %}
+           {% if item.title != blank %} <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion" ><p >{{ item.title }}</p></button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                   {{ item.body }}
+                </div>
+              </div>
+          </div>
+        </div>{% endif %}
+    {% endfor %}
+</div>
+  </div>
+</div>
+{% endif %}

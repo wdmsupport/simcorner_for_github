@@ -1,0 +1,1311 @@
+<div class="product-single__description rte" itemprop="description">
+
+</div>
+
+<div class="mobile_information">
+      <h2>Things to know</h2>
+
+    	<div class="accordion"></div> 
+
+  {% if product.metafields.custom_fields["faq_question_1"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_1"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_1"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+
+   {% comment %}
+<!--{% if product.metafields.custom_fields["benefits"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Benefits</button>
+        <div class="panel">
+          <div class="custom-field custom-field__benefits custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["benefits"] }}
+            </div>
+          </div>
+           
+        </div>
+    </div>
+{% endif %}-->
+ {% endcomment %}
+    
+    
+ {% if product.metafields.custom_fields["how_it_works"] != blank %} 
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">How it works</button>
+        <div class="panel">
+          <div class="custom-field custom-field__how-it-works custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["how_it_works"] }}
+            </div>
+          </div>
+        </div>
+      </div>
+{% endif %}
+{% if product.metafields.custom_fields["domestic_shipping_in_australia"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Domestic Shipping in Australia</button>
+      <div class="panel">
+          <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["domestic_shipping_in_australia"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+    
+{% if product.metafields.custom_fields["international_shipping"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">International Shipping</button>
+      <div class="panel">
+          <div class="custom-field custom-field__international-shipping custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["international_shipping"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+    
+<div class="accordion_box">
+{% if product.metafields.custom_fields["travelling_with_friends_and_fa"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Travelling with Friends and Family</button>
+      <div class="panel">
+        <div class="custom-field custom-field__travelling-with-friends-and-fa custom-field__type--html">
+          <div class="custom-field--value">
+            {{ product.metafields.custom_fields["travelling_with_friends_and_fa"] }}
+          </div>
+        </div>
+      </div>
+    </div>      
+{% endif %}
+      
+{% if product.metafields.custom_fields["countries_coverage"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Countries Coverage</button>
+      <div class="panel">
+          <div class="custom-field custom-field__countries-coverage custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["countries_coverage"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+      
+    </div>	
+            
+    <div class="accordion_box">
+       {% if product.metafields.custom_fields["coverage"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+        <button class="accordion">Coverage</button>
+      <div class="panel">
+          <div class="custom-field custom-field__coverage custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["coverage"] }}
+            </div>
+          </div>
+      </div>
+    </div>          
+        {% endif %}
+      
+        {% if product.metafields.custom_fields["data_features"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Data Features</button>
+      <div class="panel">
+          <div class="custom-field custom-field__data-features custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["data_features"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+        {% endif %}
+    </div>
+      
+    <div class="accordion_box">
+      
+{% if product.metafields.custom_fields["call__text"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Calls & Texts</button>
+      <div class="panel">
+          <div class="custom-field custom-field__call__text custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["call__text"] }}
+            </div>
+          </div>
+   		</div>
+    </div>            
+{% endif %}
+       
+        {% if product.metafields.custom_fields["manual"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Manual</button>
+      <div class="panel">
+          <div class="custom-field custom-field__manual custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["manual"] }}
+            </div>
+          </div>
+      </div>
+      </div>
+        {% endif %}
+      
+    </div>
+    
+{% if product.metafields.custom_fields["how_to_recharge"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">How to Recharge</button>
+      <div class="panel">
+        <div class="custom-field custom-field__how-to-recharge custom-field__type--html">
+          <div class="custom-field--value">
+            {{ product.metafields.custom_fields["how_to_recharge"] }}
+          </div>
+        </div>
+      </div>
+    </div>
+{% endif %}
+  {% if product.metafields.custom_fields["sim_card_size"] != blank %}
+  <div class="ul_tabs_inner_main panel_acc_outer">
+    <button class="accordion">Sim Card Size</button>
+    <div class="panel">
+      <div class="custom-field custom-field__how-to-recharge custom-field__type--html">
+        <div class="custom-field--value">
+          {{ product.metafields.custom_fields["sim_card_size"] }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if product.metafields.custom_fields["compatability_"] != blank %}
+  <div class="ul_tabs_inner_main panel_acc_outer">
+    <button class="accordion">Compatibility</button>
+    <div class="panel">
+      <div class="custom-field custom-field__how-to-recharge custom-field__type--html">
+        <div class="custom-field--value">
+          {{ product.metafields.custom_fields["compatability_"] }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  
+    {% if product.metafields.custom_fields["how_to_activate_this_sim_card"] != blank %}
+  <div class="ul_tabs_inner_main panel_acc_outer">
+    <button class="accordion">How to Activate this Sim Card</button>
+    <div class="panel">
+      <div class="custom-field custom-field__how-to-recharge custom-field__type--html">
+        <div class="custom-field--value">
+          {{ product.metafields.custom_fields["how_to_activate_this_sim_card"] }}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  
+  {% if product.metafields.custom_fields["faq_question_7"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_7"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_7"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+</div>
+
+
+ <div class="custom_single_ul one for_mob">
+  <ul class="tabs">
+    <li><a href="#tab-4">Reviews</a></li>
+    <li><a href="#tab-5">FAQs</a></li>
+  </ul>
+
+  <div id="tab-4" class="ul_tabs_inner">
+    	<div class="yotpo yotpo-main-widget" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&amp;','%26'}}" data-description="{{ product.description | escape }}" data-price="{{ variant.price | money_without_currency }}" data-currency="{{ shop.currency }}"></div>
+	</div>
+  <div id="tab-5" class="ul_tabs_inner">
+   <div class="accordion"></div>
+        
+    
+        {% if product.metafields.custom_fields["faq_question_2"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_2"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_2"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+        {% if product.metafields.custom_fields["faq_question_3"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_3"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_3"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_4"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_4"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_4"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_5"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_5"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_5"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_6"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_6"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_6"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}   
+    
+            {% if product.metafields.custom_fields["faq_question_8"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_8"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_8"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_9"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_9"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_9"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_10"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_10"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_10"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_11"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_11"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_11"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_12"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_12"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_12"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_13"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_13"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_13"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_14"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_14"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_14"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_15"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_15"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_15"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_16"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_16"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_16"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_17"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_17"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_17"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_18"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_18"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_18"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_19"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_19"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_19"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_20"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_20"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_20"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_21"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_21"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_21"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_22"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_22"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_22"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_23"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_23"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_23"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_24"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_24"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_24"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_25"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_25"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_25"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_26"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_26"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_26"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_27"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_27"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_27"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_28"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_28"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_28"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_29"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_29"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_29"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_30"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_30"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_30"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+  </div>
+</div>
+
+
+
+
+
+
+
+ <div class="custom_single_ul one for_desk" id="scrll_dwn">
+  <ul class="tabs">
+    <li><a href="#tab-1">Things to know</a></li>
+    
+    <li><a href="#tab-3">FAQs</a></li>
+  </ul>
+  <div id="tab-1" class="ul_tabs_inner">
+  	<div class="accordion"></div> 
+     {% if product.metafields.custom_fields["faq_question_1"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_1"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_1"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+        {% comment %}
+<!--{% if product.metafields.custom_fields["benefits"] != blank %}
+    <div class="ul_tabs_inner_main  {% if product.metafields.custom_fields["how_it_works"] != blank %} fifty_float{% else %} panel_acc_outer{% endif %} ">
+      <button class="accordion">Benefits</button>
+        <div class="panel">
+          <div class="custom-field custom-field__benefits custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["benefits"] }}
+            </div>
+          </div>
+           
+        </div>
+    </div>
+{% endif %}-->
+   {% endcomment %}
+    
+    
+ {% if product.metafields.custom_fields["how_it_works"] != blank %} 
+    <!--<div class="ul_tabs_inner_main {% if product.metafields.custom_fields["benefits"] != blank %} fifty_float right{% else %} panel_acc_outer{% endif %}"-->
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">How it works</button>
+        <div class="panel">
+          <div class="custom-field custom-field__how-it-works custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["how_it_works"] }}
+            </div>
+          </div>
+        </div>
+      </div>
+{% endif %}
+{% if product.metafields.custom_fields["domestic_shipping_in_australia"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">Domestic Shipping in Australia</button>
+      <div class="panel">
+          <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["domestic_shipping_in_australia"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+    
+{% if product.metafields.custom_fields["international_shipping"] != blank %}
+    <div class="panel_acc_outer ul_tabs_inner_main ">
+      <button class="accordion">International Shipping</button>
+      <div class="panel">
+          <div class="custom-field custom-field__international-shipping custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["international_shipping"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+    
+<div class="accordion_box">
+{% if product.metafields.custom_fields["travelling_with_friends_and_fa"] != blank %}
+    <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["countries_coverage"] != blank %} fifty_float{% else %} panel_acc_outer{% endif %} ">
+      <button class="accordion">Travelling with Friends and Family</button>
+      <div class="panel">
+        <div class="custom-field custom-field__travelling-with-friends-and-fa custom-field__type--html">
+          <div class="custom-field--value">
+            {{ product.metafields.custom_fields["travelling_with_friends_and_fa"] }}
+          </div>
+        </div>
+      </div>
+    </div>      
+{% endif %}
+      
+{% if product.metafields.custom_fields["countries_coverage"] != blank %}
+    <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["travelling_with_friends_and_fa"] != blank %} fifty_float right{% else %} panel_acc_outer{% endif %}">
+      <button class="accordion">Countries Coverage</button>
+      <div class="panel">
+          <div class="custom-field custom-field__countries-coverage custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["countries_coverage"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+{% endif %}
+      
+    </div>	
+            
+    <div class="accordion_box">
+       {% if product.metafields.custom_fields["coverage"] != blank %}
+    <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["data_features"] != blank %} fifty_float{% else %} panel_acc_outer{% endif %} ">
+        <button class="accordion">Coverage</button>
+      <div class="panel">
+          <div class="custom-field custom-field__coverage custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["coverage"] }}
+            </div>
+          </div>
+      </div>
+    </div>          
+        {% endif %}
+      
+        {% if product.metafields.custom_fields["data_features"] != blank %}
+    <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["coverage"] != blank %} fifty_float right{% else %} panel_acc_outer{% endif %}">
+      <button class="accordion">Data Features</button>
+      <div class="panel">
+          <div class="custom-field custom-field__data-features custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["data_features"] }}
+            </div>
+          </div>
+      </div>
+    </div>
+        {% endif %}
+    </div>
+      
+    <div class="accordion_box">
+      
+{% if product.metafields.custom_fields["call__text"] != blank %}
+    <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["manual"] != blank %} fifty_float right{% else %} panel_acc_outer{% endif %}">
+      <button class="accordion">Calls & Texts</button>
+      <div class="panel">
+          <div class="custom-field custom-field__call__text custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["call__text"] }}
+            </div>
+          </div>
+   		</div>
+    </div>            
+{% endif %}
+       
+        {% if product.metafields.custom_fields["manual"] != blank %}
+    <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["call__text"] != blank %} fifty_float{% else %} panel_acc_outer{% endif %} ">
+      <button class="accordion">Manual</button>
+      <div class="panel">
+          <div class="custom-field custom-field__manual custom-field__type--html">
+            <div class="custom-field--value">
+              {{ product.metafields.custom_fields["manual"] }}
+            </div>
+          </div>
+      </div>
+      </div>
+        {% endif %}
+      
+    </div>
+    
+    <div class="accordion_box">
+      
+    {% if product.metafields.custom_fields["how_to_recharge"] != blank %}
+        <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["sim_card_size"] != blank %} fifty_float{% else %} panel_acc_outer{% endif %} ">
+          <button class="accordion">How to Recharge</button>
+          <div class="panel">
+            <div class="custom-field custom-field__how-to-recharge custom-field__type--html">
+              <div class="custom-field--value">
+                {{ product.metafields.custom_fields["how_to_recharge"] }}
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endif %}
+      
+      {% if product.metafields.custom_fields["sim_card_size"] != blank %}
+          <div class="ul_tabs_inner_main {% if product.metafields.custom_fields["how_to_recharge"] != blank %} fifty_float right{% else %} panel_acc_outer{% endif %}">
+            <button class="accordion">Sim Card Size</button>
+            <div class="panel">
+              <div class="custom-field custom-field__sim_card_size custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["sim_card_size"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endif %}
+      
+      {% if product.metafields.custom_fields["compatability_"] != blank %}
+          <div class="ul_tabs_inner_main panel_acc_outer">
+            <button class="accordion">Compatibility</button>
+            <div class="panel">
+              <div class="custom-field custom-field__compatability custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["compatability_"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endif %}
+      
+       {% if product.metafields.custom_fields["how_to_activate_this_sim_card"] != blank %}
+          <div class="ul_tabs_inner_main panel_acc_outer">
+            <button class="accordion">How to Activate this Sim Card</button>
+            <div class="panel">
+              <div class="custom-field custom-field__how_to_activate_this_sim_card custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["how_to_activate_this_sim_card"] }}
+                </div>
+              </div>
+            </div>
+          </div>
+      {% endif %}
+      
+     {% if product.metafields.custom_fields["faq_question_7"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_7"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_7"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    </div>
+
+  </div>
+  
+  <div id="tab-3" class="ul_tabs_inner">
+   <div class="accordion"></div>
+       
+    
+        {% if product.metafields.custom_fields["faq_question_2"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_2"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_2"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+        {% if product.metafields.custom_fields["faq_question_3"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_3"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_3"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_4"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_4"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_4"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_5"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_5"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_5"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_6"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main test">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_6"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_6"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_7"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_7"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_7"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_8"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_8"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_8"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_9"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_9"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_9"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+            {% if product.metafields.custom_fields["faq_question_10"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_10"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_10"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_11"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_11"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_11"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_12"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_12"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_12"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_13"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_13"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_13"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_14"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_14"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_14"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_15"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_15"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_15"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_16"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_16"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_16"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_17"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_17"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_17"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_18"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_18"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_18"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_19"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_19"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_19"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_20"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_20"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_20"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_21"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_21"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_21"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_22"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_22"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_22"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_23"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_23"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_23"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_24"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_24"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_24"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_25"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_25"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_25"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_26"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_26"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_26"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_27"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_27"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_27"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_28"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_28"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_28"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_29"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_29"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_29"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+    	{% if product.metafields.custom_fields["faq_question_30"] != blank %}
+        <div class="panel_acc_outer ul_tabs_inner_main ">
+          <button class="accordion">{{ product.metafields.custom_fields["faq_question_30"] }}</button>
+          <div class="panel">
+              <div class="custom-field custom-field__domestic-shipping-in-australia custom-field__type--html">
+                <div class="custom-field--value">
+                  {{ product.metafields.custom_fields["faq_answer_30"] }}
+                </div>
+              </div>
+          </div>
+        </div>
+    	{% endif %}
+    
+  </div>
+</div>
+ <div id="reviews-sec" class="reviews-sec">
+   <div class="section-header text-center">
+     <h2 class="h1 section-header__title">Reviews</h2>
+            <hr class="hr--small">
+   </div>
+    	<div class="yotpo yotpo-main-widget" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&amp;','%26'}}" data-description="{{ product.description | escape }}" data-price="{{ variant.price | money_without_currency }}" data-currency="{{ shop.currency }}"></div>
+  </div>                
+<style>
+ul.tabs {
+  border-bottom: 1px solid #DDDDDD;
+  display: block;
+  margin: 0 0 20px;
+  padding: 0;
+}
+ul.tabs li {
+  display: block;
+  float: left;
+  height: 30px;
+  margin-bottom: 0;
+  padding: 0;
+  width: auto;
+}
+ul.tabs li a {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background: none repeat scroll 0 0 #F5F5F5;
+  border-color: #DDDDDD !important;
+  border-style: solid;
+  border-width: 1px 1px 0 1px;
+  display: block;
+  font-size: 13px;
+  height: 29px;
+  line-height: 30px;
+  margin: 0;
+  padding: 0 20px;
+  text-decoration: none;
+  width: auto;
+  color: #303030;
+  border-bottom:none !important;
+}
+ul.tabs li a.active {
+  background: none repeat scroll 0 0 #FFFFFF;
+  border-left-width: 1px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  color: #111111;
+  height: 30px;
+  margin: 0 0 0 -1px;
+  padding-top: 4px;
+  position: relative;
+  top: -4px;
+}
+ul.tabs li:first-child a.active {
+  margin-left: 0;
+}
+ul.tabs li:first-child a {
+  border-top-left-radius: 2px;
+  border-width: 1px 1px 0;
+}
+ul.tabs li:last-child a {
+  border-top-right-radius: 2px;
+}
+ul.tabs:before, ul.tabs:after {
+  content: " ";
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+ul.tabs:after {
+  clear: both;
+}
+</style>
+{% comment %}
+{% include 'products.custom_fields' %}
+{% endcomment %}

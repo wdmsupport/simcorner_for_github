@@ -1,0 +1,208 @@
+{% unless template == 'index' or template == 'cart' or template == 'list-collections' %}
+<nav class="breadcrumb" role="navigation" aria-label="breadcrumbs">
+  <a href="/" title="Home">Home</a>
+  
+  {% for tag in product.tags %}
+  {% if tag == 'accessories' %} 
+  	{% assign tagCheck =  tag %}
+  {% endif %}
+  {% endfor %}
+  
+  {% if tagCheck == 'accessories' %}
+  	<span aria-hidden="true">/</span>
+  	<a href="/pages/accessories" title="Regions">Accessories</a>
+  {% else %}
+  	{% if collection.handle=='packing-cubes' or collection.handle=='laundry-bags' or collection.handle=='travel-journals' or collection.handle=='travel-accessories-and-necessities' %}
+  		<style> .section-header{display:none} </style>
+  		<span aria-hidden="true">/</span>
+      <a href="/pages/accessories" title="Regions">Accessories</a>
+  	{% else %}
+  		<span aria-hidden="true">/</span>
+      	<a href="/pages/regions" title="Regions">International SIM Card</a>
+  	{% endif %}
+  {% endif %}
+  
+  {% if collection.metafields.custom_fields["parent_collection_url"] != blank %}
+  	<span aria-hidden="true">/</span>
+  	<a href="javascript:;">
+      {% assign collection_ref = collections[collection.metafields.custom_fields["parent_collection_url"]] %}
+      {{ collection_ref.title | link_to: collection_ref.url }}
+  	</a>
+  {% endif %}
+  {% if collection.metafields.custom_fields["parent_collection_url_2"] != blank %}
+  	<span aria-hidden="true">/</span>
+  	<a href="javascript:;">
+      {% assign collection_ref = collections[collection.metafields.custom_fields["parent_collection_url_2"]] %}
+      {{ collection_ref.title | link_to: collection_ref.url }}
+  	</a>
+  {% endif %}
+  
+  {% if template contains 'page' %}
+    <span aria-hidden="true">/</span>
+    <span>{{ page.title }}</span>
+  {% elsif template contains 'product' %}
+    {% if collection.url %}
+        <span aria-hidden="true">/</span>
+        {{ collection.title | link_to: collection.url }}
+    {% endif %}
+    <span aria-hidden="true">/</span>
+    <span>{{ product.title }}</span>
+  {% elsif template contains 'collection' and collection.handle %}
+    <span aria-hidden="true">/</span>
+    {% if current_tags %}
+      {% capture url %}/collections/{{ collection.handle }}{% endcapture %}
+      {{ collection.title | link_to: url }}
+      <span aria-hidden="true">/</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+      <span>{{ collection.title }}</span>
+    {% endif %}
+  
+  {% elsif template == 'blog' %}
+    <span aria-hidden="true">/</span>
+    {% if current_tags %}
+      {{ blog.title | link_to: blog.url }}
+      <span aria-hidden="true">&rsaquo;</span>
+      <span>{{ current_tags | join: " + " }}</span>
+    {% else %}
+    <span>{{ blog.title }}</span>
+    {% endif %}
+  
+  {% elsif template == 'article' %}
+    <span aria-hidden="true">/</span>
+    {{ blog.title | link_to: blog.url }}
+    <span aria-hidden="true">/</span>
+    <span>{{ article.title }}</span>
+  {% else %}
+   <span aria-hidden="true">/</span>
+   <span>{{ page_title }}</span>
+  {% endif %}
+  
+</nav>
+{% endunless %}
+
+<!-- Rich snippet breadcrumb -->  
+{% comment %}
+  Breadcrumbs
+  https://developers.google.com/search/docs/data-types/breadcrumbs
+{% endcomment %}
+
+{%- if current_tags -%}
+  {%- assign tag_names = current_tags | join: ', ' %}
+  {% comment %}Converting an array to a handle converts it to a string{% endcomment %}
+  {%- capture tag_handles -%}
+    {%- for tag in current_tags -%}
+      {{- tag | handle | append: '|' -}}
+    {%- endfor -%}
+  {%- endcapture -%}
+{%- endif -%}
+
+{% if collection.url == blank %}
+  {% assign collection_url = '/collections/all' %}
+{% else %}
+  {% assign collection_url = collection.url %}
+{% endif %}
+
+{% if template.name == 'product' 
+    or template.name == 'list-collections' 
+    or template.name == 'collection' 
+    or template.name == 'blog' 
+    or template.name == 'article' 
+    or template.name == 'search' 
+    or template.name == 'cart' 
+    or template.name == 'page'
+%}
+
+  <script type="application/ld+json">
+   {
+      "@context": "http://schema.org",
+      "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "{{ shop.name }}",
+      "item": "{{ shop.url }}"
+    }
+       {%- if request.page_type == 'product' -%}
+      {%- if collection -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}{{ collection.url }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+      {%- else -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.title | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+      
+       {%- endif -%}
+      
+      {%- elsif request.page_type == 'collection' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }   
+      
+      {%- elsif request.page_type == 'blog' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ blog.title | json }},
+          "item": "{{ shop.url }}{{ blog.url }}"
+        }
+    {%- elsif request.page_type == 'article' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ blog.title | json }},
+          "item": "{{ shop.url }}{{ blog.url }}"
+        }, {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ blog.title | json }},
+          "item": "{{ shop.url }}{{ article.url }}"
+        }
+    {%- elsif request.page_type == 'page' -%}
+       ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ page.title | json }},
+          "item": "{{ shop.url }}{{ page.url }}"
+        }
+    {%- endif -%}
+        ] }    
+  </script>
+{% endif %}
+
+{% if main_entity_microdata != blank %}
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    {{ main_entity_microdata }}
+  }
+  }
+  </script>
+{% endif %}
+
+{% if breadcrumb_entity_microdata != blank %}
+  <script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    {{ breadcrumb_entity_microdata }}
+  }
+  </script>
+{% endif %}
+
+<!-- Rich snippet breadcrumb -->

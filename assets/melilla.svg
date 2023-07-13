@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#0C8DB0;}
+	.st1{fill:#818085;}
+	.st2{fill:#FECF0A;}
+	.st3{fill:#F7F7F7;}
+	.st4{fill:#ACABB1;}
+	.st5{fill:#006289;}
+	.st6{fill:#D2332B;}
+</style>
+<circle class="st0" cx="256" cy="256" r="256"/>
+<rect x="122.4" y="278.3" class="st1" width="267.1" height="33.4"/>
+<polygon class="st2" points="167,178.1 256,189.2 345,178.1 345,124.7 309.4,142.5 256,89 202.6,142.5 167,124.7 "/>
+<g>
+	<polygon class="st3" points="144.7,345 111.3,345 111.3,283.8 122.4,267.1 111.3,250.4 111.3,211.5 144.7,211.5 	"/>
+	<polygon class="st3" points="400.7,345 367.3,345 367.3,211.5 400.7,211.5 400.7,250.4 389.6,267.4 400.7,283.8 	"/>
+</g>
+<rect x="111.3" y="250.4" class="st4" width="289.4" height="33.4"/>
+<path class="st3" d="M256,389.6c-49.1,0-89-39.9-89-89V178.1H345v122.4C345,349.6,305.1,389.6,256,389.6z"/>
+<path class="st5" d="M256,356.2c-30.7,0-55.7-25-55.7-55.7v-89h111.3v89C311.7,331.2,286.7,356.2,256,356.2z"/>
+<g>
+	<rect x="167" y="178.1" class="st6" width="33.4" height="33.4"/>
+	<rect x="311.7" y="178.1" class="st6" width="33.4" height="33.4"/>
+	<rect x="311.7" y="250.4" class="st6" width="33.4" height="33.4"/>
+	<rect x="167" y="250.4" class="st6" width="33.4" height="33.4"/>
+	<rect x="239.3" y="178.1" class="st6" width="33.4" height="33.4"/>
+	<path class="st6" d="M256,356.2c-5.8,0-11.4-0.9-16.7-2.6V388c5.4,1,11,1.6,16.7,1.6c5.7,0,11.3-0.6,16.7-1.6v-34.4
+		C267.4,355.3,261.8,356.2,256,356.2z"/>
+	<path class="st6" d="M201.1,309.6l-26.6,26.6c4.6,10.5,11.2,20,19.3,27.9l23.6-23.6C208.9,332.4,203.1,321.6,201.1,309.6z"/>
+	<path class="st6" d="M337.6,336.2l-26.6-26.6c-2,12.1-7.8,22.8-16.3,31l23.6,23.6C326.3,356.2,332.9,346.7,337.6,336.2z"/>
+</g>
+</svg>

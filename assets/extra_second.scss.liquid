@@ -1,0 +1,504 @@
+/*============================================================================
+  Dependency-free breakpoint mixin
+    - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+==============================================================================*/
+$min: min-width;
+$max: max-width;
+@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+  @if $constraint == $min {
+    @media screen and ($min: $viewport1) {
+      @content;
+    }
+  } @else if $constraint == $max {
+    @media screen and ($max: $viewport1) {
+      @content;
+    }
+  } @else {
+    @media screen and ($min: $viewport1) and ($max: $viewport2) {
+      @content;
+    }
+  }
+}
+
+
+
+$viewportIncrement: 1px;
+$siteWidth: 1342px;
+$small: 590px;
+$extrasmall: 320px;
+$medium: 768px;
+//$medium_screen: 768px;  
+$large: 992px;
+
+$xlarge: $siteWidth + $viewportIncrement;
+
+$postSmall: $small + $viewportIncrement;
+$preMedium: $medium - $viewportIncrement;
+$preLarge: $large - $viewportIncrement;
+
+/*================ The following are dependencies of csswizardry grid ================*/
+$breakpoints: (
+  'small' '(max-width: #{$small})',
+  'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
+  'medium-down' '(max-width: #{$medium})',
+  'large' '(min-width: #{$large})',
+  'medium' '(min-width: #{$medium})',
+  'extrasmall' '(min-width: #{$extrasmall})',
+  'xlarge' '(min-width: #{$xlarge})'
+);
+$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large', 'xlarge');
+$breakpoint-has-push:  ('medium', 'medium-down', 'large');
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large');
+
+
+@font-face {
+  font-family: 'Rational Display DEMO Light';
+  src: url('{{ "RationalDisplayDEMO-Light.eot" | asset_url }}');
+  src: url('{{ "RationalDisplayDEMO-Light.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "RationalDisplayDEMO-Light.woff" | asset_url }}') format("woff"),
+       url('{{ "RationalDisplayDEMO-Light.woff2" | asset_url }}') format("woff2"),
+       url('{{ "RationalDisplayDEMO-Light.ttf" | asset_url }}') format("truetype"),
+       url('{{ "RationalDisplayDEMO-Light.svg" | asset_url }}#RationalDisplayDEMO-Light') format("svg");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+};
+@font-face {
+  font-family: 'Rational Display';
+  src: url('{{ "RationalDisplay-Book.eot" | asset_url }}');
+  src: url('{{ "RationalDisplay-Book.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "RationalDisplay-Book.woff" | asset_url }}') format("woff"),
+       url('{{ "RationalDisplay-Book.woff2" | asset_url }}') format("woff2"),
+       url('{{ "RationalDisplay-Book.ttf" | asset_url }}') format("truetype"),
+       url('{{ "RationalDisplay-Book.svg" | asset_url }}#RationalDisplay-Book') format("svg");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+};
+@font-face {
+  font-family: 'Rational Display DEMO Bold';
+  src: url('{{ "RationalDisplayDEMO-SemiBold.eot" | asset_url }}');
+  src: url('{{ "RationalDisplayDEMO-SemiBold.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "RationalDisplayDEMO-SemiBold.woff" | asset_url }}') format("woff"),
+       url('{{ "RationalDisplayDEMO-SemiBold.woff2" | asset_url }}') format("woff2"),
+       url('{{ "RationalDisplayDEMO-SemiBold.ttf" | asset_url }}') format("truetype"),
+       url('{{ "RationalDisplayDEMO-SemiBold.svg" | asset_url }}#RationalDisplayDEMO-SemiBold') format("svg");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+};
+/*fonts*/
+$RationalLight: 'Rational Display DEMO Light';
+$RationalBold: 'Rational Display DEMO Bold';
+$RationalNormal:'Rational Display';
+
+// Sizing variables
+$background_black:#000;
+$letter_spacing_05:0.5px;
+$color_black:#000;
+$color_white: #fff;
+$margin_0:0;
+$font_weight_600:600;
+$font_weight_300:300;
+$padding_0:0;
+$banner_fontsize_desktop:40px;
+
+
+
+
+@mixin display_block {display:block;}
+@mixin float_width_auto {float:left; width:auto;}
+@mixin display_none {display:none;}
+@mixin text_center {text-align:center;}
+@mixin display_vertical_middle{display: inline-block;vertical-align: middle;}
+@mixin display_vertical_float{display: inline-block;vertical-align: middle;float:none;}
+@mixin define_float {float:left; width:100%;}
+@mixin define_float_margin0{float:left; width:100%;margin:0;}
+@mixin define_float_center {float:left; width:100%; text-align:center;}
+@mixin define_float_left {float:left; width:100%; text-align:left;}
+@mixin normal_fontsize{font-size:14px;}
+@mixin breadcrumb_a_span{ font-style: normal;font-size: 12px;line-height: 16px;font-family: 'Rational Display DEMO Light'; float:left;}
+@mixin innerpage_common_heading{float: left;width: 100%;text-align: center;font-weight: 600;font-size: 20px;line-height: 26px;color: #191B1D;text-transform: none;letter-spacing: 0;position:relative;font-family: 'Rational Display DEMO Bold';margin:0; padding:0 0 7px 0;}
+@mixin innerpage_heading_after{content: '';width: 35px;height: 3px;background: #FF7A00;position: absolute;bottom: 0;left: 50%;transform: translateX(-50%);}
+@mixin home_heading_common_desktop{@include define_float;  position: relative;     font-size: 32px;     letter-spacing: $letter_spacing_05;     line-height:42px;     color: $color_black;     padding: 0 0 15px 0; font-family:'Rational Display DEMO Bold';}
+@mixin display_flex_center{ display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-align: center;-moz-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;}
+@mixin banner_section_full_width{width:100vw; position:relative; left:calc(-50vw + 50%);}
+            
+
+@include at-query($min, $extrasmall) {
+  .shipping_outer {
+    .section-header {
+      margin: 0;@include define_float;
+      background-image: url(https://cdn.shopify.com/s/files/1/0179/4388/7926/files/shippingheader_1.png?v=1582376306);
+      padding: 108px 30px;
+      background-repeat:no-repeat;
+      background-size:cover;
+      position:relative;
+      hr.hr--small {
+        @include display_none;
+      }
+      h1 {
+        @include define_float_center;
+        margin: $margin_0;
+        color: #ffff;
+        font-size: 32px;
+		position:relative;
+        z-index:1;
+        line-height: 40px;font-weight:800;
+      
+
+      }
+
+    }
+    .grid{
+      margin:$margin_0;
+    }
+    .grid .grid__item{
+      padding:0 15px;
+    }
+    .shipping_main_otr {
+      padding: 30px 0 100px 0;
+      @include define_float;
+    }
+    .australia_table{
+      @include define_float;
+      overflow:auto;
+
+      table{
+        width:780px;
+        float:left;
+        border: 1px solid #EDEDED;
+        backgorund-color:$color_white;
+        @include text_center;
+        font-family: "Muli",sans-serif;
+        margin:0 0 25px 0;
+
+        thead{
+          background: #595C61;
+
+
+          th{
+            padding:13px 20px;
+            @include text_center;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 20px;
+            color:$color_white;
+            letter-spacing:0;
+            border: 1px solid #EDEDED;
+            text-transform: inherit;
+            font-family: "Muli",sans-serif;
+          }
+          th:after{
+            @include display_none;
+          }
+
+        }
+        tbody{
+          td{
+            padding:16px 20px 25px 20px;
+            @include text_center;
+            border: 1px solid #EDEDED;
+            font-family: "Muli",sans-serif;
+            p{
+              margin:0 0 3px 0;
+              font-weight: normal;
+              font-size: 16px;
+              line-height: 23px;
+              letter-spacing: 0.005em;
+              color: #191B1D;
+              b{
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 23px;
+                color: #191B1D;
+                font-family:$RationalBold;
+              }
+            }
+            p:last-child{
+              margin:$margin_0;
+              letter-spacing: 0;
+            }
+            b{
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 20px;
+              color: #000000;
+              font-family:$RationalBold;
+            } 
+          }
+          td::after{
+            @include display_none;
+          }
+        }
+
+      }
+    }
+  }
+  .shipping_outer {
+    .section-header {
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+      }
+    }
+  }
+  .store_location_outer {
+    .section-header {
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+      }
+    }
+  }
+
+  .shipping_p_outer {
+    @include define_float;
+    margin: 0 0 0 0;
+    p {
+      @include define_float;
+      margin: 0 0 25px 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 23px;
+      letter-spacing: 0.005em;
+      color: #000000;
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+  .australia_details.usa {margin: 31px 0 0 0;}
+  .shipping_with_australia {
+    @include define_float;
+    margin: 50px 0 0 0;
+    padding: 0;
+    h2 {
+      @include define_float;
+      margin: 0 0 20px 0;
+      padding: 0;
+      font-weight: 800;
+      font-size: 24px;
+      line-height: 31px;
+      text-align: center;
+      letter-spacing: 0.005em;
+      color: #191B1D;
+    }
+    span {
+      @include define_float;
+      margin: 0 0 32px 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 23px;
+      text-align: center;
+      letter-spacing: 0.005em;
+      color: #000000;
+    }
+  }
+  .rte {
+    .shipping_with_australia {
+      h2 {
+        &::after {
+          display: none;
+        }
+      }
+    }
+  }
+  .australia_details {
+    float: left;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    p {
+      float: left;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: 0.005em;
+      color: #000000;
+      text-align:left;
+    }
+    h5 {
+      float: left;
+      width: 100%;
+      margin: 30px 0 15px 0;
+      padding: 0;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: 0.005em;
+      color: #000000;
+      text-transform: inherit; 
+      font-weight: 800;
+      text-align:left;
+    }
+  }
+  .shipping_outer {
+    .australia_table {
+      table {
+        tbody {
+          tr.canada_tr {
+            background-color: #9A9DA2;
+            td {
+              padding: 12px 20px;
+              text-align: left;
+              p {
+                color: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  body#shipping-amp-delivery-time {
+    div#shopify-section-footer {
+      margin: 0;
+    }
+  }
+  
+  
+  .shipping_outer {
+    .australia_table {
+      table {
+        tbody {
+          td {
+            p {
+              &:last-child {
+                font-size: 14px;
+                line-height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .rte {
+    .australia_details {
+      p {
+        a {
+          color: #FF7A00;
+          text-decoration: none;
+          border: none;
+          word-break:break-word;
+        }
+      }
+    }
+  }
+  .rte {
+    .australia_details {
+      p {
+        a {
+          &:hover {
+            text-decoration: none;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+/*******min 768px**********/
+@include at-query($min, $medium) {
+
+
+  
+  .shipping_with_australia {
+    text-align: center;
+    span {
+      float: none;
+      display: inline-block;
+      width: 584px;
+    }
+  }
+
+
+  .shipping_outer {
+    .shipping_main_otr {
+      padding: 100px 0 120px 0;
+      float: left;
+      width: 100%;
+    }
+  }
+  .shipping_with_australia {
+    h2 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+  }
+  
+  .shipping_outer {
+    .section-header {
+      @include banner_section_full_width;
+    }
+  }
+  .shipping_outer {
+    .section-header {
+   
+      background-image: url(https://cdn.shopify.com/s/files/1/0179/4388/7926/files/shipping.jpg?v=1582118375);
+      background-size: 100% 100%;
+      padding: 199px 0;
+      h1 {
+        
+        font-size: 42px;
+        font-weight:800;
+        line-height: 55px;
+      }
+    }
+  }
+  
+  .shipping_with_australia {
+    margin: 110px 0 0 0;
+  }
+  .shipping_with_australia.australia {
+    margin: 81px 0 0 0;
+  }
+  .shipping_with_australia {
+    span {
+      margin: 0 0 40px 0;
+    }
+  }
+  .shipping_with_australia {
+    h2 {
+      margin: 0 0 10px 0;
+    }
+  }
+  .australia_details {
+    h5 {
+      margin: 35px 0 15px 0;
+    }
+  }
+  .shipping_outer {
+    .australia_table {
+      table {
+        margin: 0 0 30px 0;
+        width:100%;
+      }
+    }
+  }
+
+  
+
+}

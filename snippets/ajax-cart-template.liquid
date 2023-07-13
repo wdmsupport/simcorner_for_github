@@ -1,0 +1,371 @@
+<!-- /snippets/ajax-cart-template.liquid -->
+{% comment %}
+
+  This snippet provides the default handlebars.js templates for 
+  the ajax cart plugin. Use the raw liquid tags to keep the
+  handlebar.js template tags as available hooks.
+
+	{{#properties}}
+      {{#each this}}
+        {{#if this}}
+        <span class="ajaxcart__product-meta">{{@key}}: {{this}}</span>
+        {{/if}}
+      {{/each}}
+    {{/properties}}
+{% endcomment %}
+  <script id="CartTemplate" type="text/template">
+  {% raw %}
+  	<div style="display:none" class="cart_top">
+    	<span class="left_cart_top">
+        	Your Cart: {{{cartTotalItems}}} Item(s)
+    	</span>
+        <span class="right_cart_top">
+        	Order Total: {{{totalPrice}}}
+    	</span>
+    </div>
+    <form action="/checkout" method="post" novalidate class="cart ajaxcart">
+      <div class="ajaxcart__inner ajaxcart__inner--has-fixed-footer">
+        {{#items}}
+        <div class="ajaxcart__product" {{#if departure_date}} id="usa_product" {{/if}}>
+          <div class="ajaxcart__row" data-line="{{line}}">
+            <div class="grid grid__item">
+            <div class="ajaxcart__row_gridmain">
+              <div class="grid__item one-quarter">
+                <a href="{{url}}" class="ajaxcart__product-image"><img src="{{img}}" alt="{{name}}"></a>
+              </div>
+              <div class="grid__item three-quarters">
+                <div id="drawer_{{{id}}}" class="ajaxcart__product-name--wrapper qty_parent">
+                 
+                  <a href="{{url}}" class="ajaxcart__product-name">{{{name}}}</a>
+                  <button type="button" class="ajaxcart__qty-remove icon-fallback-text" data-keyfirst="{{{sku2}}}" data-keysec="{{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}" data-attrkey="{{{sku2}}} {{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}" product-sku="{{{sku2}}}" data-id="{{key}}" data-qty="{{itemMinus}}" data-line="{{line}}" aria-label="{% endraw %}{{ 'cart.general.reduce_quantity' | t }}{% raw %}">
+                     <img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/cross_black.svg?10052" />
+                  </button>
+                  {{#if variation}}
+                    <span class="ajaxcart__product-meta">{{variation}}</span>
+                  {{/if}}
+                  
+                
+
+					<div class="grid--full">
+					  <div class="grid__item one-half">
+						<div class="ajaxcart__qty">
+						<span class="qty">Qty:</span> 
+						  <button type="button" data-keyfirst="{{{sku2}}}" data-keysec="{{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}" data-attrkey="{{{sku2}}} {{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}" class="ajaxcart__qty-adjust ajaxcart__qty--minus icon-fallback-text" product-sku="{{{sku2}}}" data-id="{{key}}" data-qty="{{itemMinus}}" data-line="{{line}}" aria-label="{% endraw %}{{ 'cart.general.reduce_quantity' | t }}{% raw %}">
+							<span class="icon icon-minus" aria-hidden="true"></span>
+							<span class="fallback-text" aria-hidden="true">&minus;</span>
+						  </button>
+						  <input onkeydown="return false" type="text" maxlength="3" name="updates[]" class="ajaxcart__qty-num" value="{{itemQty}}" min="0" data-id="{{key}}" data-line="{{line}}" aria-label="quantity" pattern="[0-9]*">
+						  <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus icon-fallback-text" product-sku="{{{sku2}}}" data-id="{{key}}" data-line="{{line}}" data-qty="{{itemAdd}}" aria-label="{% endraw %}{{ 'cart.general.increase_quantity' | t }}{% raw %}">
+							<span class="icon icon-plus" aria-hidden="true"></span>
+							<span class="fallback-text" aria-hidden="true">+</span>
+						  </button>
+						</div>
+					  </div>
+					  <div class="grid__item one-half text-right">
+						{{#if discountsApplied}}
+						  <span class="visually-hidden">{% endraw %}{{ 'products.general.regular_price' | t }}{% raw %}</span>
+						  <del class="ajaxcart__price">{{{price}}}</del>
+						  <span class="visually-hidden">{% endraw %}{{ 'products.general.sale_price' | t }}{% raw %}</span>
+						  <span class="ajaxcart__price">{{{discountedPrice}}}</span>
+						{{else}}
+						  <span class="ajaxcart__price">{{{price}}}</span>
+						{{/if}}
+						{{#if unitPrice}}
+						  <span class="visually-hidden">{% endraw %}{{ 'products.general.unit_price' | t }}{% raw %}</span>
+						  <span class="cart__unit-price">
+							{% endraw %}
+							  {%- capture unit_price_separator -%}
+								<span aria-hidden="true">/</span><span class="visually-hidden">&nbsp;{{ 'general.accessibility.unit_price_separator' | t }}&nbsp;</span>
+							  {%- endcapture -%}
+							{% raw %}
+
+							<span>{{{ unitPrice.price }}}</span>{% endraw %}{{- unit_price_separator -}}{% raw %}{{#if unitPrice.addRefererenceValue }}{{{ unitPrice.reference_value }}}{{/if}}{{{ unitPrice.reference_unit }}}
+						  </span>
+						{{/if}}
+					  </div>
+					</div>
+				
+                </div>
+				
+				</div>
+				
+                
+                {{#if discountsApplied}}
+                  <div class="grid--full">
+                    <div class="grid__item text-right">
+                      <ul class="order-discount order-discount--list order-discount--title order-discount--ajax-cart order-discount--ajax-cart-list" aria-label="{% endraw %}{{ 'customer.order.discount' | t }}{% raw %}">
+                        {{#each discounts}}
+                          <li class="order-discount__item">
+                            <span class="icon icon-saletag" aria-hidden="true"></span>{{ this.discount_application.title }} (-{{{ this.formattedAmount }}})
+                          </li>
+                        {{/each}}
+                      </ul>
+                    </div>
+                  </div>
+                {{/if}}
+              </div>
+              <div class="arrival_container">
+              {{#if access}}
+              		<div style="display:none">No attribute</div>
+              {{else}}
+                      <div class="arrival_text_main">
+                        	{{#properties}}
+                              {{#each this}}
+                                {{#if this}}
+                                    <div class="arrival_text">Please enter your {{this}}:</div>
+                                {{/if}}
+                              {{/each}}
+                            {{/properties}}
+                          <div class="input_row">
+                              {{#properties}}
+                                {{#each this}}
+                                  {{#if this}}
+                                    <label>{{this}}:</label>
+                                  {{/if}}
+                                {{/each}}
+                              {{/properties}}
+                              <input placeholder="{{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}" validate_attr="vrequired-{{{id}}}-0" class="vrequired-{{{id}}}-0 date datepicker" type="text" name="attributes[{{{sku2}}} {{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}]" value="">
+                              <span class="dp_input input_small_buttons"><img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/ion-calendar.svg?10308"/></span>
+                              {{#if departure_date}}
+                              
+                              
+                               <span class="add_input input_small_buttons" label="{{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}" sku="{{{sku2}}}" onclick="adddeptfield(this)" id="{{{id}}}" data-qty="{{{itemQty}}}">
+                              <img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/plus_cart.svg?10308" /></span>
+                              
+                              {{else}}
+                               <span class="add_input input_small_buttons" label="{{#properties}}{{#each this}}{{this}}{{/each}}{{/properties}}" sku="{{{sku2}}}" onclick="addfield(this)" id="{{{id}}}" data-qty="{{{itemQty}}}">
+                              <img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/plus_cart.svg?10308" /></span>
+                               {{/if}}
+                                
+                             
+                          </div>
+                        </div>
+                        {{#if departure_date}}
+                        <div class="arrival_text_main">
+                          <div class="input_row">
+                               <label>Departure Date:</label>
+                              {{{departure_date}}}
+                              <span class="dp_input input_small_buttons"><img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/ion-calendar.svg?10308"/></span>
+                          </div>
+                        </div>
+                        {{/if}}
+			  		{{/if}}
+                  </div>
+            </div>
+          </div>
+        </div>
+        {{/items}}
+
+        {% endraw %}{% if settings.cart_notes_enable %}{% raw %}
+          <div>
+            <label for="CartSpecialInstructions" class="ajaxcart__note">{% endraw %}{{ 'cart.general.note' | t }}{% raw %}</label>
+            <textarea name="note" class="input-full" id="CartSpecialInstructions">{{note}}</textarea>
+          </div>
+        {% endraw %}{% endif %}{% raw %}
+      </div>
+      <div class="ajaxcart__footer ajaxcart__footer--fixed">
+      	<div class="summary_cart_otr">
+      	<span class="summary" style="display:none">Pricing Summary</span>
+        <div class="grid--full">
+          {{#if cartDiscountsApplied}}
+            {{#each cartDiscounts}}
+              <div class="grid__item two-thirds ajaxcart__discounts">
+                <span class="order-discount order-discount--title order-discount--ajax-cart">
+                  <span class="icon icon-saletag" aria-hidden="true"></span><span class="visually-hidden">{% endraw %}{{ 'customer.order.discount' | t }}{% raw %}:</span>{{ this.title }}
+                </span>
+              </div>
+              <div class="grid__item one-third text-right">
+                <span class="ajaxcart__price">-{{{ this.formattedAmount }}}</span>
+              </div>
+            {{/each}}
+          {{/if}}
+          <div class="grid__item two-thirds">
+            <p class="ajaxcart__subtotal">Total</p>
+          </div>
+          <div class="grid__item one-third text-right">
+            <p class="ajaxcart__subtotal">{{{totalPrice}}}<span class="gst">incl. GST</span></p>
+          </div>
+        </div>
+
+        <p class="ajaxcart__policies">{% endraw %}
+          {%- capture taxes_shipping_checkout -%}
+            {%- if shop.taxes_included and shop.shipping_policy.body != blank -%}
+              {{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}
+            {%- elsif shop.taxes_included -%}
+              {{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}
+            {%- elsif shop.shipping_policy.body != blank -%}
+              {{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}
+            {%- else -%}
+              {{ 'cart.general.taxes_and_shipping_at_checkout' | t }}
+            {%- endif -%}
+          {%- endcapture -%}
+          {{ taxes_shipping_checkout }}
+        {% raw %}</p>
+        <button type="submit" class="btn--secondary btn--full cart__checkout" name="checkout">
+          {% endraw %}{{ 'cart.general.checkout' | t }}{% raw %} <span class="icon icon-arrow-right" aria-hidden="true"></span>
+        </button>
+        </div>
+      </div>
+    </form>
+  {% endraw %}
+ 
+   {% comment %}
+   {% for product in collections.travel-accessories-and-necessities.products %}
+  
+    {% if product.id == 4455457161270 %}
+    
+
+   
+   {% raw %}
+   <div class="crss_container">
+   <form method="post" action="/cart/add" onsubmit="event.preventDefault(); addextraprd(this);" accept-charset="UTF-8" enctype="multipart/form-data" data-product-form=""><input type="hidden" name="form_type" value="product">
+   	<div class="crs_img crs_left"><a><img src="{% endraw %}{{ product | img_url }}{% raw %}"></a></div>
+  	 <div class="crs_right">
+     	<div class="crs_right_top">
+        	<div class="crs_title">{% endraw %} {{ product.title }}{% raw %}</div>
+            <div class="crs_atc product-single__add-to-cart">
+                <button type="submit" name="add" id="AddToCart--product-template" class="btn btn--add-to-cart">
+                  <span class="btn__text">ADD</span>
+                  <img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/cart_plus.svg">
+                </button>
+            </div>
+        </div>
+        <div class="crs_right_bottom">
+        	<div class="crs_right_bottom_left">
+	{% endraw %}
+
+           
+      {% if product.tags contains 'accessories' %}
+          {% raw %}<input style="display:none" id="accessories" type="text" name="properties[Type]" value="Accessories"> {% endraw %}
+      {% endif %}
+            
+        {% raw %}
+		<div class="radio-wrapper js product-form__item radio_outer_main cart_drawer_extraprd">
+           <label class="single-option-radio__label" for="ProductSelect-option-0">
+           Color
+           </label>
+           <fieldset class="single-option-radio desktopradio" id="ProductSelect-option-0">
+        {% endraw %}
+               {% for variant in product.variants %}
+               		{% raw %}
+                      <div class="product_radio_otr">
+                         <input type="radio" {% endraw %} {% if forloop.index == 1 %}checked="checked"{% endif %} {% raw %} value="{% endraw %}{{ variant.title }}{% raw %}" data-variant-id="{% endraw %}{{variant.id}}{% raw %}" data-index="option1" name="option1" class="single-option-selector__radio" id="{% endraw %}{{ variant.sku }}{% raw %}">
+                         <label class="dd" for="{% endraw %}{{ variant.sku }}{% raw %}"><img src="{% endraw %}{{ variant.title | replace: " ", "_" | append: ".png" | asset_url  }}{% raw %}" /> </label>
+                      </div>
+                  {% endraw %}
+            	{% endfor %}
+        {% raw %}        
+           </fieldset>
+        </div>
+
+
+ <select name="id" id="ProductSelect" class="product-single__variants no-js drawerprd">
+  {% endraw %}
+                {% for variant in product.variants %}
+                  {% if variant.available %}
+                     {% raw %}<option {% endraw %}
+					 {% if variant == product.selected_or_first_available_variant %} 
+                     {% raw %} selected="selected" {% endraw %} {% endif %}
+                     {% raw %} data-sku="{% endraw %}{{ variant.sku }}{% raw %}"
+                      value="{% endraw %}{{ variant.id }}{% raw %}">{% endraw %}
+                      {{ variant.title }} - {{ variant.price | money_with_currency }}
+                   {% raw %} </option> {% endraw %}
+                  {% else %}
+                   {% raw %} <option disabled="disabled">{% endraw %}
+                      {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                    {% raw %}</option>{% endraw %}
+                  {% endif %}
+                {% endfor %}
+            {% raw %}  </select>
+
+ 	</div>
+    <div class="crs_right_bottom_right">
+     {% endraw %}
+        {% for variant in product.variants %}
+        	 {% if variant == product.selected_or_first_available_variant %} 
+        		{{ variant.price | money_with_currency }}
+             {% endif %} 
+        {% endfor %}
+      {% raw %}
+    </div>
+              
+    </div>
+    </div>
+    </form>
+    </div>
+  {% endraw %}
+      
+   
+   
+   
+    
+    {% endif %}
+    {% endfor %}
+  
+  {% endcomment %}
+  
+  </script>
+  <script id="AjaxQty" type="text/template">
+  {% raw %}
+    <div class="ajaxcart__qty">
+      <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--minus icon-fallback-text" data-id="{{key}}" data-qty="{{itemMinus}}" aria-label="{% endraw %}{{ 'cart.general.reduce_quantity' | t }}{% raw %}">
+        <span class="icon icon-minus" aria-hidden="true"></span>
+        <span class="fallback-text" aria-hidden="true">&minus;</span>
+      </button>
+      <input type="text" class="ajaxcart__qty-num" value="{{itemQty}}" min="0" data-id="{{key}}" aria-label="quantity" pattern="[0-9]*">
+      <button type="button" class="ajaxcart__qty-adjust ajaxcart__qty--plus icon-fallback-text" data-id="{{key}}" data-qty="{{itemAdd}}" aria-label="{% endraw %}{{ 'cart.general.increase_quantity' | t }}{% raw %}">
+        <span class="icon icon-plus" aria-hidden="true"></span>
+        <span class="fallback-text" aria-hidden="true">+</span>
+      </button>
+    </div>
+  {% endraw %}
+  </script>
+  <script id="JsQty" type="text/template">
+  {% raw %}
+    <div class="js-qty">
+      <button type="button" class="js-qty__adjust js-qty__adjust--minus icon-fallback-text" data-id="{{key}}" data-qty="{{itemMinus}}" aria-label="{% endraw %}{{ 'cart.general.reduce_quantity' | t }}{% raw %}">
+        <span class="icon icon-minus" aria-hidden="true"></span>
+        <span class="fallback-text" aria-hidden="true">&minus;</span>
+      </button>
+      <input type="text" class="js-qty__num" value="{{itemQty}}" min="1" data-id="{{key}}" aria-label="quantity" pattern="[0-9]*" name="{{inputName}}" id="{{inputId}}">
+      <button type="button" class="js-qty__adjust js-qty__adjust--plus icon-fallback-text" data-id="{{key}}" data-qty="{{itemAdd}}" aria-label="{% endraw %}{{ 'cart.general.increase_quantity' | t }}{% raw %}">
+        <span class="icon icon-plus" aria-hidden="true"></span>
+        <span class="fallback-text" aria-hidden="true">+</span>
+      </button>
+    </div>
+  {% endraw %}
+  </script>
+
+<script>
+ 
+  function addextraprd(param){
+   var form = jQuery(param)[0];
+  var formData = new FormData(form);
+  var params = {
+    type: 'POST',
+    url: '/cart/add.js',
+    data: formData,
+    processData: false,
+    contentType: false,
+    dataType: 'json',
+    success: function(line_item) {
+      /*if (typeof callback === 'function') {
+        callback(line_item, form);
+      } else {
+        console.log(form);
+        ShopifyAPI.onItemAdded(line_item, form);
+      }*/
+       ajaxCart.load();
+    },
+    error: function(XMLHttpRequest, textStatus) {
+      if (typeof errorCallback === 'function') {
+        errorCallback(XMLHttpRequest, textStatus);
+      } else {
+        ShopifyAPI.onError(XMLHttpRequest, textStatus);
+      }
+    }
+  };
+  jQuery.ajax(params);  
+     }
+ 
+</script>

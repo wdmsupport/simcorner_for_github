@@ -1,0 +1,329 @@
+
+/*.define_float{float:left; width:100%;}
+div .hero--color-0 .burger-icon{    background: #000; width:19px;}
+.site-nav--mobile .icon-cart:before{display:none;}
+
+span.burger-icon.burger-icon--mid {width: 12px;}
+.site-nav--mobile img {display: inline-block;vertical-align: middle;}
+.shop_banner a {     background: linear-gradient(254.3deg, #FFAD31 1%, #FF8731 98.91%);     border-radius: 25px;     padding: 15px 41px;     text-transform: none;     font-weight: 600;     font-size: 14px;     line-height: 18px;     letter-spacing: 0.18px; }
+.mobile_search{display:none;}
+.search_banner input[type="submit"] {width: 24px;     height: 24px;padding:0;background-color: transparent;vertical-align:middle;     float: none;     display: inline-block;     background-image: url(https://cdn.shopify.com/s/files/1/0179/4388/7926/files/search_icon.svg?294);     background-repeat: no-repeat;     }
+.search_banner input[type="text"] {letter-spacing: 0.5px;line-height: 22px;font-size: 18px;padding:0;   vertical-align:middle;   background: transparent;      width: auto;     color: #fff;     float: none;     display: inline-block;     text-align: center;     max-width: inherit; }
+
+
+.search_banner input[type="text"]::-webkit-input-placeholder { color: #fff;}
+.search_banner input[type="text"]::-moz-placeholder {color: #fff;}
+.search_banner input[type="text"]:-ms-input-placeholder { color: #fff;}
+.search_banner input[type="text"]:-moz-placeholder { color: #fff;}
+
+.shop_banner {margin: 37px 0 0 0;}
+.shop_banner p {float: left;font-weight: 600;font-size: 14px;line-height: 18px;width: 100%;margin: 0 0 15px 0;}
+
+.features_love_outer .feature-row__text{text-align:center;padding: 15px 0 0 0;}
+.features_love_outer h2 {     float: left;     width: 100%;     font-weight: 600;     font-size: 18px;     line-height: 23px;     text-align: center;     margin: 0 0 5px 0;     letter-spacing: 0.5px;     text-transform: none; }
+.features_love_outer p {     float: left;     letter-spacing: 0.5px;     font-weight: 300;     font-size: 14px;     line-height: 20px;     width: 100%;     margin: 0;     color: #000000; }
+
+.features_love_outer .feature-row__image{    width: 120px;    position: relative;}
+.features_love_outer .feature-row__image-wrapper{    padding-top: 0 !important;}
+div#shopify-section-1576148806722 {margin: 7px 0 0 0;}
+*/
+<style>
+.nextPreviousHolder {
+	width: 100%;
+	float: left;
+	text-align: center;
+	}
+	.nextPreviousBtn {
+		width: calc(50% - 20px);
+		float: left;
+		text-align: left;
+		margin: 30px 0;
+	}
+	.nextPreviousBtn:nth-of-type(2) {
+		float: right;
+		margin-left: 40px;
+		text-align: right;
+	}
+	.nextPreviousBtn div {
+		float: left;
+	}
+	.nextPreviousBtn span {
+		font-size: 11px;
+		width: 100%;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		margin-bottom: 5px;
+	}
+	.nextPreviousBtn p {
+		font-weight: 700;
+		font-size: 18px;
+		line-height: 20px;
+	}
+	.nextPreviousBtn div {
+		width: calc(100% - 10px);
+		padding-right: 10px;
+	}
+	.nextPreviousBtn div:nth-of-type(2) {
+		padding-left: 10px;
+		padding-right: 0px;
+	}
+	.nextPreviousBtn div.leftArrow {
+		width: 10px; 
+		float: left;
+		margin-top: 25px;
+	}
+	.leftArrow::before {
+ 	width: 1px;
+    content: "";
+    float: left;
+    transform: rotate(40deg);
+    height: 15px;
+    background: #3a3a3a;
+    position: relative;
+    left: 5px;
+	}
+	.leftArrow::after {
+	width: 1px;
+    content: "";
+    float: left;
+    transform: rotate(-40deg);
+    height: 15px;
+    background: #3a3a3a;
+    top: -4px;
+    position: relative;
+    left: 5px;
+	}
+	.nextPreviousBtn div.rightArrow {
+		width: 10px; 
+		float: left;
+		margin-top: 25px;
+	}
+	.rightArrow::before {
+ 	width: 1px;
+    content: "";
+    float: left;
+    transform: rotate(-40deg);
+    height: 15px;
+    background: #3a3a3a;
+    position: relative;
+    left: -5px;
+	}
+	.rightArrow::after {
+	width: 1px;
+    content: "";
+    float: left;
+    transform: rotate(40deg);
+    height: 15px;
+    background: #3a3a3a;
+     top: -4px;
+    position: relative;
+    left: -5px;
+	}
+	
+</style>
+<style>
+
+.navslider_main .product-single__photo-wrapper {
+    padding-top: 0 !important;
+}
+.product-single__photos.navslider_main img {
+    position: relative;
+    border-radius: 5px;
+}
+.navslider_main .product-single__photo-wrapper {
+    padding-top: 0 !important;
+}
+
+.navslider_main .slick-thumbs.slick-initialized.slick-slider button.slick-prev, .navslider_main .slick-thumbs.slick-initialized.slick-slider button.slick-next {
+    display: none !important;
+}
+
+.slick-thumbs button.slick-prev, .slick-thumbs button.slick-next {
+    display: none !important;
+}
+
+.navslider_main .main_image button.slick-prev::after {
+    z-index: 99;
+    line-height: inherit;
+    width: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    font-size: 0;
+    width: 16px;
+    height: 16px;
+    border-left: 3px solid #ffad31;
+    border-bottom: 3px solid #ffad31;
+    transform: rotate(45deg);
+    left: 6px;
+    right: 0;
+    content: '';
+
+}
+
+.navslider_main .main_image button.slick-next::after {
+    position: relative;
+    line-height: inherit;
+    width: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    right: 0;
+    font-size: 0;
+    width: 16px;
+    height: 16px;
+    border-right: 3px solid #ffad31;
+    border-bottom: 3px solid #ffad31;
+    transform: rotate(-45deg);
+    right: 6px;
+    left: 0;
+    content: '';
+}
+
+.navslider_main .main_image button.slick-prev {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 0;
+    width: 38px;
+    height: 38px;
+    background-color: #fff;
+    border-radius: 40px;
+    left: 15px;
+}
+.navslider_main .main_image button.slick-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    font-size: 0;
+    width: 38px;
+    height: 38px;
+    background-color: #fff;
+    border-radius: 40px;
+    right: 15px;
+}
+
+.navslider_main .slick-list.draggable .slick-slide {
+    padding: 0 7px;
+}
+
+.product-single .grid__item.large--seven-twelfths .product-single__photo--container .product-single__photo-wrapper {
+    float: left;
+    width: 100%;
+    margin: 0 !important;
+}
+.main_image.slick-slider {
+    margin: 0 0 20px 0;
+}
+/*08-04-2022-start*/
+#new-zealand-is-opening-where-you-should-go-to-first #shopify-section-article-template .rte p{
+margin-bottom:15px;
+}
+
+#new-zealand-is-opening-where-you-should-go-to-first #shopify-section-article-template .rte p b, #new-zealand-is-opening-where-you-should-go-to-first #shopify-section-article-template .rte p a {
+    font-size: 18px;
+    letter-spacing: 0.005em;
+    font-weight: 600;
+}
+
+#new-zealand-is-opening-where-you-should-go-to-first p b img {
+    margin: 20px 0;
+}
+
+#new-zealand-is-opening-where-you-should-go-to-first #shopify-section-article-template .rte p span a b {
+    font-size: 16px;
+}
+.product-share {
+    margin-top: 15px;
+}
+body#the-traveller-s-guide-to-phuket-top-6-places-to-visit .section-header.text-center {
+    background-position: center;
+}
+body#top-7-family-friendly-travel-destinations header.section-header.text-center {
+    background-position: center center;
+}
+body#\36 -best-countries-for-backpacking-in-europe header.section-header.text-center {
+    background-position: 20% 75%;
+}
+/*08-04-2022-start*/
+
+@media only screen and (min-width: 768px) {
+
+  .template-collection div.continent_outer_main .section-header .grid {
+      padding: 120px 0;
+  }
+  .template-collection div.continent_outer_main .section-header {
+    background-position: center;
+  }
+
+}
+@media only screen and (max-width: 992px) {
+	.navslider_main .slick-list.draggable .slick-slide {
+	    padding: 0 5px;
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+	.navslider_main .main_image button.slick-next::after {
+	    width: 13px;
+	    height: 13px;
+	    right: 4px;
+	}
+	.navslider_main .main_image button.slick-next {
+	    width: 36px;
+	    height: 36px;
+	}
+	.navslider_main .main_image button.slick-prev::after {
+	    width: 13px;
+	    height: 13px;
+	    left: 4px;
+	}
+	.navslider_main .main_image button.slick-prev {
+	    width: 36px;
+	    height: 36px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.navslider_main .main_image button.slick-next::after {
+	    width: 12px;
+	    height: 12px;
+	    right: 4px;
+	}
+	.navslider_main .main_image button.slick-prev::after {
+	    width: 12px;
+	    height: 12px;
+	    left: 4px;
+	}
+	.navslider_main .main_image button.slick-next {
+	    width: 30px;
+	    height: 30px;
+	}
+	.navslider_main .main_image button.slick-prev {
+	    width: 30px;
+	    height: 30px;
+	}
+	.main_image.slick-slider {
+	    margin: 0 0 10px 0;
+	}
+	.navslider_main .slick-list.draggable .slick-slide {
+	    padding: 0 3px;
+	}
+  .template-article #shopify-section-article-template .rte ul, .template-article #shopify-section-article-template .rte ul li {
+    float: none !important;
+    width: auto !important;
+}
+}
+body#\31 0-tips-for-packing-light-for-your-travels .single_blog_outer .section-header {
+    background-position: center 26%;
+}
+body#\37 -awesome-destinations-to-visit-in-thailand header.section-header.text-center {
+    background-position: center 26%;
+}
+
+</style>

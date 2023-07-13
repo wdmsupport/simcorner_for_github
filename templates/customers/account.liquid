@@ -1,0 +1,48 @@
+<!-- /templates/customers/account.liquid -->
+{% comment %}
+
+  For all available customer liquid tags:
+    - http://docs.shopify.com/themes/liquid-variables/customer
+
+{% endcomment %}
+
+{% paginate customer.orders by 20 %}
+
+<div class="grid">
+
+   <div class="grid__item one-third medium-down--one-whole account_details_left">
+    <h3>My Account</h3>
+     
+     <ul>
+       <li><strong><a href="/account">Account Dashboard</a></strong></li> 
+       <li><a href="/pages/password-reset">Password Reset</a></li>
+       <li><a href="/account/addresses">Address Book</a></li>
+       <li><a href="/pages/orders">My Orders</a></li>
+       <li><a href="/account/logout">Log Out</a></li>
+     </ul>
+
+  </div>
+  <div class="grid__item two-thirds medium-down--one-whole account_data_right">
+    <h2>My Dashboard</h2>
+    <h3>Hello, {{ customer.first_name }} {{ customer.last_name }}</h3>
+    <p>Here you can view your recent orders with tracking and update your details.</p>
+    <h4>Account Information</h4>
+    <div class="account_pass">
+      <p>{{ customer.first_name }} {{ customer.last_name }}</p>
+      <p>{{ customer.email }}</p>
+      <a href="/pages/password-reset">Change Password</a>
+    </div>
+    <div class="account_man">
+      <h5>Address Book</h5>
+      <a href="/account/addresses">Manage Addresses</a>
+    </div>
+  </div>
+
+ 
+
+</div>
+
+{% if paginate.pages > 1 %}
+  {% include 'pagination' %}
+{% endif %}
+{% endpaginate %}

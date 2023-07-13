@@ -1,0 +1,25 @@
+{% if collection.metafields.custom_fields["accordian_collection"] != blank %}
+{% assign data_attr = shop.metafields._cf_collections["accordian_collection"].data_attr %}
+<div class="cf-widget-accordian-collection cf-widget__accordion cf-auto-init" {{ data_attr }}>
+  <div class="cf-widget-items-wrapper">
+    {% for item in collection.metafields.custom_fields["accordian_collection"] %}
+    <div class="cf-widget-item" data-index="{{ forloop.index0 }}">
+      <div class="cf-accordion-title">
+        {{ item.title }}
+      </div>
+      <div class="inner">
+        <div class="inner-padding">
+          
+            {% if item.body != blank %}
+            <div class="cf-widget-field cf-widget-field__body cf-widget-field--html">
+              {{ item.body }}
+            </div>
+            {% endif %}
+          
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

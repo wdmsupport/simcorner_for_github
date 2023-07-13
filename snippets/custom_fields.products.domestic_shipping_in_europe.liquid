@@ -1,0 +1,13 @@
+{% comment %}
+  DO NOT MODIFY THIS FILE DIRECTLY. THIS FILE WILL BE OVERWRITTEN.
+  YOU CAN MODIFY THE LIQUID CODE FOR THIS CUSTOM FIELD HERE:
+  https://customfields.bonify.io/dashboard/simcorner.myshopify.com/products/configure/162367/edit
+{% endcomment %}
+{% if product.metafields.custom_fields["domestic_shipping_in_europe"] != blank %}
+  <div class="custom-field custom-field__domestic-shipping-in-europe custom-field__type--html">
+    <h3 class="custom-field--title">Domestic Shipping in Europe</h3>
+    <div class="custom-field--value">
+      {{ product.metafields.custom_fields["domestic_shipping_in_europe"] }}
+    </div>
+  </div>
+{% endif %}

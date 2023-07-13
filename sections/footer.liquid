@@ -1,0 +1,523 @@
+ <footer class="site-footer small--text-center" role="contentinfo">
+  <div class="wrapper">
+
+    <div class="grid-uniform">
+
+      {% comment %}
+        Default to 1 footer column (copyright/powered_by/payment_types)
+      {% endcomment %}
+      {% assign num_footer_columns = 1 %}
+
+      {% comment %}
+        Create an extra menu column if link list has more than 5 links
+      {% endcomment %}
+      {% if linklists[section.settings.footer_link_list].links.size > 0 %}
+        {% comment %}
+          We have a Footer menu that isn't empty, we will need another column
+        {% endcomment %}
+        {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+        {% assign extra_footer_linklist_column = false %}
+        {% assign footer_linklist_count = linklists[section.settings.footer_link_list].links.size %}
+        {% if footer_linklist_count > 5 %}
+          {% assign extra_footer_linklist_column = true %}
+          {% comment %}
+            We split the links so we'll need another column
+          {% endcomment %}
+          {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+        {% endif %}
+        {% comment %}
+          If we have an odd amount of links, we need to show 1 more link in 1st column
+        {% endcomment %}
+        {% assign extra_link = footer_linklist_count | modulo: 2 %}
+        {% comment %}
+          We start with a 2nd column after first column is filled up.
+        {% endcomment %}
+        {% assign footer_linklist_split = footer_linklist_count | divided_by: 2 | plus: extra_link | plus: 1 %}
+      {% endif %}
+
+      {% comment %}
+        Determine whether there are social links
+      {% endcomment %}
+      {% assign footer_social_enable = false %}
+      {% if
+        settings.social_twitter_link != blank
+        or settings.social_facebook_link != blank
+        or settings.social_pinterest_link != blank
+        or settings.social_google_plus_link != blank
+        or settings.social_instagram_link != blank
+        or settings.social_tumblr_link != blank
+        or settings.social_youtube_link != blank
+        or settings.social_vimeo_link != blank
+        or settings.social_fancy_link != blank
+        or settings.social_snapchat_link != blank
+      %}
+        {% assign footer_social_enable = true %}
+      {% endif %}
+
+      {% comment %}
+        Calculate the number of footer columns shown. Default to 1.
+      {% endcomment %}
+      {% if footer_social_enable %}
+        {% assign num_footer_columns = num_footer_columns | plus: 1 %}
+      {% endif %}
+
+      {% case num_footer_columns %}
+        {% when 0 %}
+        {% when 1 %}
+          {% assign footer_column_width = '' %}
+        {% when 2 %}
+          {% assign footer_column_width = 'one-half small--one-whole' %}
+        {% when 3 %}
+          {% assign footer_column_width = 'one-third small--one-whole' %}
+        {% when 4 %}
+          {% assign footer_column_width = 'large--one-quarter medium--one-half' %}
+      {% endcase %}
+		 <div class="about_footer_main">
+           <p style="color:white"><b>About SimCorner</b></p>
+          <p>SimCorner is Australia's favourite one-stop shop for all your international SIM card needs. At Sim Corner we sell Travel SIM cards & eSIM cards for the hottest destinations such as USA SIMs, Japan, Europe UK, New Zealand and Asia at unbeatable prices! Get your prepaid sims direct to your door or office in Sydney, Melbourne, and throughout Australia.</p>
+           <li><a href="/pages/about-us">Learn More</a></li>
+        </div>
+      <div class="accordian_footer_otr">
+        <div class="accordion_footer_main">
+          <div class="accordion" id="section2"></div>
+          <div class="container">
+            <div class="content"></div>
+          </div>
+          <div class="panel_acc_outer">
+            <button class="accordion">Popular Destinations</button>
+            <div class="panel">
+              <ul itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+                <li itemprop="name"><a itemprop="url" href="/collections/europe-sim-card">Europe SIM Cards</a></li>
+                <li itemprop="name"><a itemprop="url" href="/collections/usa-canada-mexico-sim-card">USA SIM Cards</a></li>
+                <li itemprop="name"><a itemprop="url" href="/collections/new-zealand-sim-card">NZ SIM Cards</a></li>
+                <li itemprop="name"><a itemprop="url" href="/collections/travel-journals">Travel Journals</a></li>
+                <li itemprop="name"><a itemprop="url" href="/collections/packing-cubes">Packing Cubes</a></li> 
+                <li itemprop="name"><a href="/pages/regions">Shop by Regions</a></li>
+                <li itemprop="name"><a itemprop="url" href="/pages/shop-esim">Travel eSIM </a></li>
+                <li itemprop="name"><a href="/pages/accessories">Shop Accessories</a></li>
+                
+              </ul>
+            </div>
+          </div>
+          <div class="panel_acc_outer">
+            <button class="accordion">Community</button>
+            <div class="panel">
+              <ul>
+                
+                <li><a href="/pages/blog">Blog</a></li>
+                <li><a href="/pages/reviews">Customer Reviews</a></li>
+                <li><a href="/pages/affiliate-program">Affiliates</a></li>
+                <li><a href="/pages/simcorner-price-beat-guarantee">Price Beat Guarantee</a></li>
+                <li><a href="/pages/html-sitemap">Sitemap</a></li>
+                 {% comment %}<li><a href="/pages/store-locations">Store Locations</a></li>{% endcomment %}
+              </ul>
+            </div>
+          </div>
+          <div class="panel_acc_outer">
+            <button class="accordion">Support</button>
+            <div class="panel">
+              <ul>
+                <li><a href="/pages/contact-us">Contact Us</a></li>
+                <li><a href="/pages/faq">FAQ</a></li>
+                <li><a href="/pages/shipping">Shipping</a></li>
+                <li><a href="/account">My Account</a></li>
+                <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/pages/terms-conditions">T&C</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+             {% if footer_social_enable %}
+        <div class="social_icons_outer grid__item {{ footer_column_width }}">
+          <h3>Follow Us</h3>
+            <ul class="no-bullets social-icons">
+              {% if settings.social_facebook_link != blank %}
+                <li>
+                  <a href="{{ settings.social_facebook_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Facebook' }}">
+                    <span class="icon icon-facebook" aria-hidden="true"></span>
+                    Facebook
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_twitter_link != blank %}
+                <li>
+                  <a href="{{ settings.social_twitter_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Twitter' }}">
+                    <span class="icon icon-twitter" aria-hidden="true"></span>
+                    Twitter
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_pinterest_link != blank %}
+                <li>
+                  <a href="{{ settings.social_pinterest_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Pinterest' }}">
+                    <span class="icon icon-pinterest" aria-hidden="true"></span>
+                    Pinterest
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_instagram_link != blank %}
+                <li>
+                  <a href="{{ settings.social_instagram_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Instagram' }}">
+                    <span class="icon icon-instagram" aria-hidden="true"></span>
+                    Instagram
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_snapchat_link != blank %}
+                <li>
+                  <a href="{{ settings.social_snapchat_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Snapchat' }}">
+                    <span class="icon icon-snapchat" aria-hidden="true"></span>
+                    Snapchat
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_google_plus_link != blank %}
+                <li>
+                  <a href="{{ settings.social_google_plus_link | escape }}" rel="publisher" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Google Plus' }}">
+                    <span class="icon icon-google_plus" aria-hidden="true"></span>
+                    Google Plus
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_tumblr_link != blank %}
+                <li>
+                  <a href="{{ settings.social_tumblr_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Tumblr' }}">
+                    <span class="icon icon-tumblr" aria-hidden="true"></span>
+                    Tumblr
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_youtube_link != blank %}
+                <li>
+                  <a href="{{ settings.social_youtube_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'YouTube' }}">
+                    <span class="icon icon-youtube" aria-hidden="true"></span>
+                    YouTube
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_vimeo_link != blank %}
+                <li>
+                  <a href="{{ settings.social_vimeo_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Vimeo' }}">
+                    <span class="icon icon-vimeo" aria-hidden="true"></span>
+                    Vimeo
+                  </a>
+                </li>
+              {% endif %}
+              {% if settings.social_fancy_link != blank %}
+                <li>
+                  <a href="{{ settings.social_fancy_link | escape }}" title="{{ 'layout.footer.social_platform' | t: name: shop.name, platform: 'Fancy' }}">
+                    <span class="icon icon-fancy" aria-hidden="true"></span>
+                    Fancy
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+          <a href="/pages/reviews"><div id="y-badges" class="yotpo yotpo-badge badge-init">&nbsp;</div></a>
+        </div>
+      {% endif %}
+      </div>
+      
+      
+      <div class="footer_flg">
+        <div class="footer_flg_inr">
+          <p>Shop by location:</p>
+          <ul>
+            <li><a href="https://simcorner.com"><img width="64" height="42" class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/footer_au.png?v=1584949372" alt="au" /></a></li>
+            <li><a href="https://nz.simcorner.com"><img width="64" height="47" class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/footer_nu.png?v=1584949372" alt="nz" /></a></li>
+            <li><a href="https://us.simcorner.com"><img width="64" height="50" class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/footer_usa.png?v=1584949372" alt="us" /></a></li>
+            <li><a href=https://ca.simcorner.com><img width="64" height="42" class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/footer_ca.png?v=1584949372" alt="ca" /></a></li>
+            <li><a href="https://uk.simcorner.com"><img width="64" height="50" class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/footer_uk.png?v=1584949372" alt="uk" /></a></li>
+            <li><a href="https://eu.simcorner.com"><img width="64" height="46" class="lazyload" data-src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/footer_eu.png?v=1584949372" alt="eu" /></a></li>
+          </ul>
+        </div>
+        <div class="footer_logo_bottom">
+          <p>Accepted Payment Methods:</p>
+          <ul class="inline-list payment-icons">
+            {%- for type in shop.enabled_payment_types -%}
+            <li>
+              {{ type | payment_type_svg_tag: class: 'icon' }}
+            </li>
+            {%- endfor -%}
+          </ul>	
+        </div>
+      </div>
+     
+      <div class="copyright_otr">
+        <div class="copyright grid__item {{ footer_column_width }} {% if num_footer_columns == 1 %}text-center{% else %}large--text-right{% endif %}">
+          <p>Copyright {{ 'now' | date: '%Y' }}, {{ 'SimCorner Pty Ltd.' | link_to: routes.root_url }}All Rights Reserved. ABN 87161420542<br></p>
+            {%- if section.settings.show_payment_icons -%}
+              {%- unless shop.enabled_payment_types == empty -%}
+                <span class="visually-hidden">{{ 'general.payment.method' | t }}</span>
+                
+              {%- endunless -%}
+            {%- endif -%}
+        </div> 
+        <div class="devel_main">
+          <p><a class="white_devel" href="https://webdesignmarket.com.au/" target="_blank" >Developed by</a> <a href="https://webdesignmarket.com.au/ " target="_blank" >WDM Ecommerce Agency</a></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script> 
+    jQuery(document).mouseup(function (e) { 
+       jQuery( ".activemenu" ).click(function() {
+       // jQuery( ".sub_menu_otr" ).show();
+       });
+      if (jQuery(e.target).closest('body').length === 0) { 
+        jQuery('.sub_menu_otr').slideUp()
+      } 
+    });
+  
+ /******************Homeage Scroll top search start***************/
+  jQuery(window).scroll(function() {
+    var windowHeight = jQuery(window).scrollTop();
+    var headerheight = jQuery('.header_topbar').height();
+    if(windowHeight > headerheight) {
+      jQuery('.page-container #shopify-section-slideshow .slick-list').addClass('scroll_top_search');
+    } 
+    else {
+      jQuery('.page-container #shopify-section-slideshow .slick-list').removeClass('scroll_top_search');
+    }
+  });
+  
+   /******************Homeage Scroll top search end***************/
+    jQuery(window).on('load', function() {
+  	 jQuery("#cover").hide();
+  });
+  jQuery(document).ready(function(){ 
+
+    jQuery("#Quantity").attr('maxlength','3');
+   
+    /* desktop homepage Search open */
+  	jQuery('.page-container .mobile_search input').click(function(){
+      jQuery('.j1').show();
+      jQuery('.j2').hide();
+      jQuery('.page-container .search_form_main').addClass('search_box_fix');
+      jQuery('.page-container .banner-search').addClass('search_box_banner');
+      jQuery('.search_box_fix input').focus();
+      
+      jQuery('body').addClass('scroll_remove');
+      jQuery('.site-nav--open button').addClass('toggle_button_open');
+      jQuery('.cross_sign').delay(500).show(0);
+      jQuery('.site-nav--open button').delay(500).hide(0);
+      jQuery('.slick-list').addClass('search_slick_fixed');
+     });
+       
+    /*******mobile homepage Search close*************/
+    jQuery('.cross_sign').click(function(){
+      jQuery('.page-container .search_form_main').removeClass('search_box_fix');
+      jQuery('.page-container .banner-search').removeClass('search_box_banner');
+      jQuery('body').removeClass('scroll_remove');	
+      jQuery('.cross_sign').hide(0);
+      jQuery('.site-nav--open button').show(0);
+      jQuery('.slick-list').removeClass('search_slick_fixed');
+      jQuery('.site-nav--open button').removeClass('toggle_button_open');
+    });
+    
+    
+    /********** desktop homepage Search close **************/
+    jQuery('.search_form_main .close_icon').click(function(){
+      jQuery('.j1').hide();
+      jQuery('.j2').show();
+      jQuery('.page-container .search_form_main').removeClass('search_box_fix');
+      jQuery('.page-container .banner-search').removeClass('search_box_banner');
+      jQuery('body').removeClass('scroll_remove');
+      jQuery('.site-nav--open button').removeClass('toggle_button_open');
+      jQuery('.slick-list').removeClass('search_slick_fixed');
+      
+    });
+    /**/
+    $('html').click(function(e) {
+      var a = e.target.className;
+  //if clicked element is not your element and parents aren't your div
+ if (e.target.className != 'input-group-field' && $(e.target).parents('.input-group-field').length == 0 && e.target.className != 'btn icon-fallback-text' && e.target.className != 'w_h_sea') {
+    jQuery('ul.search-results').css("display", "none");
+   jQuery('.input-group-field').val(''); 
+   jQuery('.search_toggle').show();
+   jQuery('.search_load').hide();
+  } 
+}); 
+
+    jQuery('.site-nav--open button').click(function(){  
+      jQuery('.page-container .search_form_main').removeClass('search_box_fix');
+      jQuery(this).removeClass('toggle_button_open');
+      //jQuery('.cross_sign').hide();
+      jQuery('.site-nav__link--burger').show();
+      jQuery('body').removeClass('scroll_remove');
+    });   
+    /*
+    jQuery('.shop_anchor').click(function(){  
+      jQuery('.sub_menu_otr').slideToggle();
+    });  
+    */
+  $(document).ready(function(){
+      $('.sub_menu_bottom_arrow').click(function(){  
+      jQuery('.sub_menu_otr').slideUp();
+    }); 
+     $('.formain').click(function(){  
+      jQuery('.menu_main').slideUp();
+    }); 
+ $('.shopmenu').on('click', function(){
+    $('.sub_menu_otr').attr('style', function(i, style){
+       return style && style.replace(/display[^;]+;?/g, '');
+     });    
+    });
+     $('.sim_menu_custom').on('click', function(){
+    $('.menu_main').attr('style', function(i, style){
+       return style && style.replace(/display[^;]+;?/g, '');
+     });    
+    });
+    $('.dropcustom').on('click', function(){
+        $(this).addClass('activemenu');
+        $(this).siblings().removeClass('activemenu');     
+    });
+	});
+     
+    jQuery('.more_details_otr > p').click(function(){
+      jQuery(this).next().slideToggle();
+      jQuery(this).toggleClass('arrow_toggle');
+    }); 
+   jQuery('#NavDrawer .search-bar input').click(function(){
+      jQuery('#NavDrawer .search_form_main').addClass('search_box_fix');
+      jQuery('.site-nav--open button').addClass('toggle_button_open');
+    });
+    jQuery('.site-nav--open button').click(function(){  
+      jQuery('#NavDrawer .search_form_main').removeClass('search_box_fix');
+      jQuery(this).removeClass('toggle_button_open');
+      jQuery('.site-nav__link--burger').show();
+    });
+
+    jQuery('.for_inner .search_form_main .close_icon').click(function(){
+      jQuery('.search_form_main').removeClass('search_box_fix');
+      jQuery('.for_inner').hide();
+      jQuery('body').removeClass('scroll_remove');
+    });
+
+    /*click to scroll*/
+    jQuery(function() {
+      jQuery('.reviews').click (function() {
+        jQuery('html, body').animate({scrollTop: jQuery('#reviews-sec').offset().top }, '3000');
+        return false;
+      });
+    });
+    /**/
+	      jQuery('.under_slider').slick({
+        dots: false, 
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: true,
+        responsive: [{
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        },
+        {
+           breakpoint: 992,
+           settings: {
+              arrows: true,
+              slidesToShow: 2,
+              slidesToScroll: 1 
+           }
+        },
+        {
+           breakpoint: 600,
+           settings: {
+              arrows: true,
+              slidesToShow: 1, 
+              slidesToScroll: 1
+           }
+        }]
+    });
+  });
+</script>
+
+
+{% schema %}
+{
+  "name": {
+    "da": "Sidefod",
+    "de": "Fußzeile",
+    "en": "Footer",
+    "es": "Pie de página",
+    "fi": "Alatunniste",
+    "fr": "Pied de page",
+    "hi": "फुटर",
+    "it": "Footer",
+    "ja": "フッター",
+    "ko": "바닥글",
+    "ms": "Pengaki",
+    "nb": "Footer",
+    "nl": "Voettekst",
+    "pt-BR": "Rodapé",
+    "pt-PT": "Rodapé",
+    "sv": "Sidfot",
+    "th": "ส่วนท้าย",
+    "zh-CN": "页脚",
+    "zh-TW": "頁尾"
+  },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_link_list",
+      "label": {
+        "da": "Sidefodsmenu",
+        "de": "Fußzeilenmenü",
+        "en": "Footer menu",
+        "es": "Menú inferior",
+        "fi": "Alatunniste-valikko",
+        "fr": "Menu pied de page",
+        "hi": "फुटर मेनू",
+        "it": "Menu footer",
+        "ja": "フッターメニュー",
+        "ko": "바닥글 메뉴",
+        "ms": "Menu kaki",
+        "nb": "Bunntekstmeny",
+        "nl": "Voettekstmenu",
+        "pt-BR": "Menu do rodapé",
+        "pt-PT": "Menu do rodapé",
+        "sv": "Sidfotsmeny",
+        "th": "เมนูส่วนท้าย",
+        "zh-CN": "页脚菜单",
+        "zh-TW": "頁尾選單"
+      },
+      "default": "footer"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_payment_icons",
+      "label": {
+        "da": "Vis betalingsikoner",
+        "de": "Zahlungssymbole anzeigen",
+        "en": "Show payment icons",
+        "es": "Mostrar iconos de pago",
+        "fi": "Näytä maksukuvakkeet",
+        "fr": "Afficher les icônes de paiement",
+        "hi": "भुगतान आइकन दिखाएं",
+        "it": "Mostra le icone di pagamento",
+        "ja": "支払いアイコンを表示する",
+        "ko": "결제 아이콘 표시",
+        "ms": "Tunjukkan ikon pembayaran",
+        "nb": "Vis betalingsikoner",
+        "nl": "Betalingspictogrammen weergeven",
+        "pt-BR": "Exibir ícones de pagamento",
+        "pt-PT": "Mostrar ícones de pagamento",
+        "sv": "Visa betalningsikoner",
+        "th": "แสดงไอคอนการชำระเงิน",
+        "zh-CN": "显示付款图标",
+        "zh-TW": "顯示付款圖示"
+      },
+      "default": true
+    }
+  ]
+}
+{% endschema %}

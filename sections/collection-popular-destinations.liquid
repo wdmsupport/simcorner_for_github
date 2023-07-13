@@ -1,0 +1,523 @@
+<!-- /templates/collection.liquid -->
+{%- comment -%}
+{%- if section.settings.show_collection_image and collection.image -%}
+  <div class="collection-hero" style="display:none;">
+    <noscript>
+      <div class="collection-hero__image-no-js" style="background-image:url({{ collection.image | img_url: '2048x2048' }});"></div>
+    </noscript>
+    {%- assign img_url = collection.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+    {%- comment -%}
+      If the collection.image height is < 70% of its width on mobile or < 45% on desktop,
+      we crop the container to make sure it's the same height as the image.
+    {%- endcomment -%}
+    {%- assign height_width_ratio = 100 | divided_by: collection.image.aspect_ratio | floor -%}
+    {%- if height_width_ratio < 70 -%}
+      <style>
+        {%- if height_width_ratio < 45 -%}
+          .collection-hero__image-wrapper::after {
+            padding-bottom: {{ height_width_ratio }}%;
+          }
+        {%- else -%}
+          @media screen and (max-width: 768px) {
+            .collection-hero__image-wrapper::after {
+              padding-bottom: {{ height_width_ratio }}%;
+            }
+          }
+        {%- endif -%}
+      </style>
+    {%- endif -%}
+    <div class="collection-hero__image-wrapper">
+      <img class="collection-hero__image lazyload"
+        src="{{ collection.image | img_url: '300x' }}"
+        data-src="{{ img_url }}"
+        data-widths="[540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048, 4472]"
+        data-aspectratio="{{ collection.image.aspect_ratio }}"
+        data-sizes="auto"
+        data-parent-fit="cover"
+        alt="{{ collection.image.alt | escape }}">
+    </div>
+  </div>
+{%- endif -%}
+{%- endcomment -%}
+<div class="continent_outer_main" id="CollectionSection" data-section-id="{{ section.id }}" data-section-type="collection-template" data-grid-type="{{ section.settings.collection_products_grid }}">
+  {%- paginate collection.products by 12 -%}
+  {% assign collection_ref = collections[collection.metafields.custom_fields["parent_collection_url"]] %}
+
+  {%- if collection_ref.title ==  'Asia' -%}
+  	  {% assign col_img_url =  'asia_countries_hero_bg.png' | asset_url  -%}
+  {%- elsif collection_ref.title ==  'NZ / Australia / Fiji' %}
+  	  {% assign col_img_url =  'auscountries_hero_bg.png' | asset_url   -%}
+  {%- elsif collection_ref.title ==  'Europe' %}
+  	  {% assign col_img_url =  'europecountries_hero_bg.png' | asset_url   -%}
+  {%- elsif collection_ref.title ==  'Middle East' %}
+  	  {% assign col_img_url =  'mecountries_hero_bg.png' | asset_url   -%}
+  {%- elsif collection_ref.title ==  'USA, Canada, Mexico' %}
+  	  {% assign col_img_url =  'usacountries_hero_bg.png' | asset_url   -%}
+  {%- elsif collection_ref.title ==  'South America' %}
+  	  {% assign col_img_url =  'sacountries_hero_bg.png' | asset_url   -%}
+  {%- elsif collection_ref.title ==  'United Kingdom' %}
+  	  {% assign col_img_url =  'ukcountries_hero_bg.png' | asset_url   -%}
+  {%- elsif collection_ref.title ==  'Africa' %}
+  	  {% assign col_img_url =  'africacountries_hero_bg.png' | asset_url   -%}
+  {%- endif -%}
+  
+  
+  <header class="section-header text-center" style="background-image:url({{ col_img_url }});">
+    
+    <hr class="hr--small">
+
+      <div class="grid">
+        <div class="grid__item">
+          <div class="rte">
+            {% assign collectionSlugArray = "asia,malaysia,nepal,japan,hong-kong,macao,south-korea,cambodia,myanmar,singapore,taiwan,thailand,indonesia,laos,china,philippines,sri-lanka,pakistan,vietnam,india,europe,belgium,spain,germany,france,greece,switzerland,poland,netherlands,austria,slovakia,malta,russia,finland,ireland,norway,portugal,sweden,latvia,slovenia,hungary,macedonia,czech-republic,italy,croatia,cyprus,iceland,bulgaria,denmark,romania,israel,usa-canada-mexico,usa,guatemala,canada,mexico,united-kingdom,nz-australia-fiji,new-zealand,australia,fiji,middle-east,kuwait,qatar,palestine,uae-dubai,oman,egypt,turkey,south-america,costa-rica,panama,brazil,el-salvador,peru,chile,argentina,uruguay,colombia,nicaragua,africa,south-africa,brussels,scotland,wales,macau" | split: ',' %}
+  			{% assign demonymArray = "Asian,Malaysian,Nepali,Japanese,Hongkonger,Macanese,Korean,Cambodian,Myanmar,Singaporean,Taiwanese,Thai,Indonesian,Laotian,Chinese,Filipina,Sri Lankan,Pakistani,Vietnamese,Indian,European,Belgian,Spaniard,Germans,French,Greeks,Swiss,Polish,Dutch,Austrian,Slovak,Maltese,Russian,Finnish,Irish,Norwegian,Portuguese,Swedish,Latvian,Slovenian,Hungarian,Macedonian,Czech,Italian,Croatian,Cypriot,Icelander,Bulgarian,Danes,Romanian,Israeli,American Canadian Mexican,American,Guatemalan,Canadian,Mexican,British,NZ Australian Fijian,NZ,Australian,Fijian,Middle Eastern,Kuwaitis,Qatari,Palestinian,Dubaite,Omani,Egyptian,Turkish,South American,Costa Rican,Panamanian,Brazilian,Salvadoran,Peruvian,Chilean,Argentinian,Uruguayan,Colombian,Nicaraguan,African,South African,Brusselaar,Scottish Scots,Welsh,Macau" | split: ',' %}
+			{% assign collectionHandle = collection.handle | remove: "-sim-card" %}
+            <h1><strong>Buy Travel SIM Cards for {{ collection.title }} in Australia</strong></h1>
+			<p>Best Value {{ collection.title }} Sim Cards. Buy your 
+              {% for slug in collectionSlugArray %}
+              {% if slug == collectionHandle  %}
+                {{ demonymArray[forloop.index0] }}
+              {% endif %}
+            {% endfor %} Travel Sim Card with data before you fly! Perfect for Aussie Tourists. Buy Online from SimCorner.<br></p>
+          </div>
+        </div>
+      </div>
+
+
+    <div class="grid--full collection-sorting{% if section.settings.collection_sort_enable %} collection-sorting--enabled{% endif %}">
+      {%- if section.settings.collection_sort_enable -%}
+        {%- include 'collection-sorting' -%}
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.collection_tags_enable -%}
+      {%- if collection.all_tags.size > 0 -%}
+        {%- if section.settings.collection_sort_enable -%}
+          <hr class="hr--small hr--clear">
+        {%- endif -%}
+        <ul class="tags tags--collection inline-list">
+          {% comment %}
+            Used for the catalog collection (/collections/all) and product collections (collections/{collection.handle})
+          {% endcomment %}
+          <li{% unless current_tags %} class="tag--active"{% endunless %}>
+            <a href="{% if collection.url == blank %}{{ routes.all_products_collection_url }}{% else %}{{ collection.url }}{% endif %}">
+              {{ 'collections.general.all_of_collection' | t }}
+            </a>
+          </li>
+
+          {%- for tag in collection.all_tags -%}
+            {%- if current_tags contains tag -%}
+              <li class="tag--active">
+                {{ tag | link_to_remove_tag: tag }}
+              </li>
+            {%- else -%}
+              <li>
+                {% comment %}
+                  Use link_to_add_tag if you want to allow filtering
+                  by multiple tags
+                {% endcomment %}
+                {{ tag | link_to_tag: tag }}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- if section.settings.collection_tags_enable -%}
+      <hr class="hr--small hr--clear">
+    {%- endif -%}
+  </header>
+{% render 'breadcrumbs' %}
+  
+
+  
+  {%- if section.settings.collection_products_grid == 'collage' -%}
+    <div class="grid grid-collage">
+      {% comment %}
+        Loop through our products in the current collection.
+        See the snippet 'snippets/product-grid-collage.liquid'.
+
+        `is_reverse_row__product`, `three_row_index__product`, `collection_product_count`, and `divisible_by_three__product` are
+        all used by 'snippets/product-grid-collage.liquid'
+      {% endcomment %}
+      {%- assign is_reverse_row__product = false -%}
+      {%- assign three_row_index__product = 0 -%}
+      {%- assign collection_product_count__product = collection.products.size -%}
+      {%- assign divisible_by_three__product = collection_product_count__product | modulo:3 -%}
+      {%- for product in collection.products -%}
+        {%- include 'product-grid-collage' -%}
+      {%- else -%}
+
+        {%- if shop.products_count == 0 -%}
+          {% comment %}
+            Add default products to help with onboarding for collections/all only
+          {% endcomment %}
+          {% include 'onboarding-featured-products' -%}
+        {%- else -%}
+          {% comment %}
+            If collection exists but is empty, display message
+          {% endcomment %}
+          <div class="grid__item text-center">
+            <p>{{ 'collections.general.no_matches' | t }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+  {%- elsif section.settings.collection_products_grid == 'grid' -%}
+    <div class="grid-uniform continent_sim_cards">
+      {%- assign grid_item_width = 'medium--one-half large--one-third' -%}
+      <div class="innerpage_heading">
+        {% assign multi_country_tag = collection.title  | downcase | append: '_multi_country' %}
+        {% if collection.title contains 'Journals' or collection.title contains 'Packing Cubes' or collection.title contains 'Laundry Bags' or collection.title contains 'Travel Accessories' %}
+        	<h2>{{ collection.title }}</h2>
+        {% else %}
+        	<h2>Sim Cards for {{ collection.title }} </h2>
+        {% endif %}
+      </div>
+      <div class="carousel_main">
+ 		 <div class="carousel carousel_one" id="carousel_one">
+            {%- for product in collection.products -%}
+             		{% assign loopindex = forloop.index | modulo: 4 %}   
+                   {%- include 'product-grid-item' -%}
+           
+           			{% if loopindex == 0 %}
+                      <div class="clearfix"></div>
+                    {% endif %}
+           
+            {%- else -%}
+              {%- if collection.handle == 'all' -%}
+                {% comment %}
+                  Add default products to help with onboarding for collections/all only
+                {% endcomment %}
+                {%- include 'onboarding-featured-products' -%}
+              {%- else -%}
+                {% comment %}
+                  If collection exists but is empty, display message
+                {% endcomment %}
+                <div class="grid__item text-center">
+                  <p>{{ 'collections.general.no_matches' | t }}</p>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+      	</div>
+	  </div>
+    </div>
+  {%- endif -%}
+	
+  {%- if paginate.pages > 1 -%}
+    {%- include 'pagination' -%}
+  {%- endif -%}
+
+  {%- endpaginate -%}
+  
+  
+</div>
+
+  	{%- assign blog_tag1 = collection.title | replace: " ", "-" | replace: ",", "" | replace: "/-", "" | downcase | prepend: 'blog-' -%}
+	{%- assign blog_tag2 = collection.title | replace: " ", "-" | replace: ",", "" | replace: "/-", "" | capitalize  | prepend: 'blog-' -%}
+	{%- assign count = 1 -%}
+  
+
+{% for article in blogs.news.articles %}
+      {% if article.tags contains blog_tag1 or article.tags contains blog_tag2 %} 
+    		{% if count == 1 %}
+<div class="related_img">
+    <div class="related_inner">
+
+    			<h2>Related Blog</h2>
+    		{% endif %}
+         <!-- first image in blog post content -->
+    	    {% if count < 4 %}
+                <div class="related_dtl_main">
+                  <div class="related_image">
+                      <a href="{{ article.url }}" class="text-colored">
+
+                        <!-- if featured image display that -->
+                        {% if article.image %}
+                        	<div class="hero-image-new"><img src="{{ article | img_url: 'large'  , crop: 'center', scale: 2 }}"/></div> 
+                        {% else %}
+                             <div class="hero-image-new"><img src="//cdn.shopify.com/s/assets/no-image-2048-5e88c1b20e087fb7bbe9a3771824e743c244f437e4f8ba93bbf7b11b53f7824c_1024x.gif"></div>     
+                        {% endif %}
+                      </a>
+                  </div>
+                  <!-- /first image in blog post content -->
+                  <div class="related_content">
+                    <h3><a href="{{ article.url }}">Article: {{ article.title }}</a></h3>
+                    <p>{{ article.content | strip_html | truncate: 300}}</p>
+                  </div>
+                </div> 
+    		 {% endif %}
+    		{% if count == 4 %}
+                <div class="text-center blog_view_more">
+                    <a href="/pages/blog" class="relink"><b>View More</b> <img src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/sub_menu_arrow.svg?5503"/></a>
+                </div>
+    		{% endif %}
+
+          {% assign count = count | plus: 1 %}
+ 		{% endif %}
+{% endfor %}
+{% if count > 1 %}
+  </div>
+</div>
+{% endif %}
+{% if collection.description != blank %}
+  <div class="collection_description">
+    {{ collection.description }}
+  </div> 
+{% else %}
+  {% assign collection_ref = collections[collection.metafields.custom_fields["parent_collection_url"]] %}
+  {% if collection_ref.description != blank %}
+    <div class="collection_description">
+      {{ collection_ref.description }}
+    </div> 
+  {% endif %}
+{% endif %}
+
+<div class="sub-categories-sec">
+    
+    {%- assign child_collection_links = linklists[collection.handle].links -%}
+    {%- if child_collection_links != blank -%}
+        <h3>Shop By Popular Destinations in {{ collection.title }}</h3>
+        <nav>
+          <ul>
+            {%- for link in child_collection_links -%}
+              <li>
+                <a href="{{ link.url}}">{{ link.title | escape }}</a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </nav>
+    {%- endif -%}
+  </div>
+{% include 'collection-faq' %}
+
+
+{% schema %}
+{
+  "name": {
+    "da": "Kollektionssider",
+    "de": "Kategorieseiten",
+    "en": "Collection pages",
+    "es": "Páginas de colección",
+    "fi": "Kokoelman sivut",
+    "fr": "Pages de collection",
+    "hi": "कलेक्शन पेज",
+    "it": "Pagine delle collezioni",
+    "ja": "コレクションページ",
+    "ko": "컬렉션 페이지",
+    "ms": "Halaman koleksi",
+    "nb": "Samlingssider",
+    "nl": "Collectiepagina's",
+    "pt-BR": "Páginas de Coleções",
+    "pt-PT": "Páginas de Coleções",
+    "sv": "Produktseriesidor",
+    "th": "หน้าคอลเลกชัน",
+    "zh-CN": "产品系列页面",
+    "zh-TW": "商品系列頁面"
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": {
+        "da": "Vis kollektionsbillede",
+        "de": "Kategorie-Foto anzeigen",
+        "en": "Show collection image",
+        "es": "Mostrar imagen de la colección",
+        "fi": "Näytä kokoelman kuva",
+        "fr": "Afficher l'image de la collection",
+        "hi": "कलेक्शन इमेज दिखाएं",
+        "it": "Mostra immagine collezione",
+        "ja": "コレクションの画像を表示する",
+        "ko": "컬렉션 이미지 표시",
+        "ms": "Tunjukkan imej koleksi",
+        "nb": "Vis samlingsbilde",
+        "nl": "Collectieafbeelding weergeven",
+        "pt-BR": "Exibir imagem da coleção",
+        "pt-PT": "Mostrar imagem da coleção",
+        "sv": "Visa produktseriebilder",
+        "th": "แสดงรูปภาพคอลเลกชัน",
+        "zh-CN": "显示产品系列图片",
+        "zh-TW": "顯示商品系列圖片"
+      },
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_sort_enable",
+      "label": {
+        "da": "Aktivér sortering af kollektioner",
+        "de": "Kategoriesortierung aktivieren",
+        "en": "Enable collection sorting",
+        "es": "Habilitar la la función ordenar colecciones",
+        "fi": "Ota kokoelman lajittelu käyttöön",
+        "fr": "Activer le tri de la collection",
+        "hi": "कलेक्शन क्रमबद्ध करना सक्षम करें",
+        "it": "Abilita ordinamento collezione",
+        "ja": "コレクションの並べ替えを有効にする",
+        "ko": "컬렉션 정렬 사용",
+        "ms": "Dayakan penyusunan koleksi",
+        "nb": "Aktiver sortering av samlinger",
+        "nl": "Sorteren op collectie inschakelen",
+        "pt-BR": "Habilitar a ordenação de coleções",
+        "pt-PT": "Ativar ordenação de coleção",
+        "sv": "Aktivera produktseriesortering",
+        "th": "เปิดใช้การเรียงลำดับคอลเลกชัน",
+        "zh-CN": "启用产品系列排序",
+        "zh-TW": "啟用商品系列排序功能"
+      }
+    },
+    {
+      "type": "checkbox",
+      "id": "collection_tags_enable",
+      "label": {
+        "da": "Aktivér tagfiltrering",
+        "de": "Tag-Filtern erlauben",
+        "en": "Enable tag filtering",
+        "es": "Habilitar filtro de etiquetas",
+        "fi": "Ota tunnisteiden suodatus käyttöön",
+        "fr": "Activer le filtrage par balises",
+        "hi": "टैग फ़िल्टर करना सक्षम करें",
+        "it": "Attiva filtro tag",
+        "ja": "タグでの絞り込みを有効にする",
+        "ko": "태그 필터링 사용",
+        "ms": "Dayakan penapisan tag",
+        "nb": "Aktiver taggfiltrering",
+        "nl": "Filteren op tags inschakelen",
+        "pt-BR": "Habilitar filtragem de tag",
+        "pt-PT": "Ativar filtragem por etiqueta",
+        "sv": "Aktivera taggfiltrering",
+        "th": "เปิดใช้การกรองแท็ก",
+        "zh-CN": "启用标签筛选",
+        "zh-TW": "啟用標籤篩選功能"
+      }
+    },
+    {
+      "type": "header",
+      "content": {
+        "da": "Produkter",
+        "de": "Produkte",
+        "en": "Products",
+        "es": "Productos",
+        "fi": "Tuotteet",
+        "fr": "Produits",
+        "hi": "उत्पाद",
+        "it": "Prodotti",
+        "ja": "商品管理",
+        "ko": "제품",
+        "ms": "Produk",
+        "nb": "Produkter",
+        "nl": "Producten",
+        "pt-BR": "Produtos",
+        "pt-PT": "Produtos",
+        "sv": "Produkter",
+        "th": "สินค้า",
+        "zh-CN": "产品",
+        "zh-TW": "產品"
+      }
+    },
+    {
+      "type": "select",
+      "id": "collection_products_grid",
+      "label": {
+        "da": "Gittertypografi",
+        "de": "Rasterstil",
+        "en": "Grid style",
+        "es": "Estilo de cuadrícula",
+        "fi": "Ruudukon tyyli",
+        "fr": "Style de grille",
+        "hi": "ग्रिड स्टाइल",
+        "it": "Stile griglia",
+        "ja": "グリッドスタイル",
+        "ko": "그리드 스타일",
+        "ms": "Gaya grid",
+        "nb": "Rutenettstil",
+        "nl": "Rasterstijl",
+        "pt-BR": "Estilo da grade",
+        "pt-PT": "Estilo da grelha",
+        "sv": "Rutnätsstil",
+        "th": "สไตล์กริด",
+        "zh-CN": "网格样式",
+        "zh-TW": "網格樣式"
+      },
+      "options": [
+        {
+          "value": "collage",
+          "label": {
+            "da": "Collage",
+            "de": "Collage",
+            "en": "Collage",
+            "es": "Collage",
+            "fi": "Kollaasi",
+            "fr": "Collage",
+            "hi": "कोलाज",
+            "it": "Collage",
+            "ja": "コラージュ",
+            "ko": "콜라주",
+            "ms": "Kolaj",
+            "nb": "Fotomontasje",
+            "nl": "Collage",
+            "pt-BR": "Colagem",
+            "pt-PT": "Colagem",
+            "sv": "Kollage",
+            "th": "ภาพตัดแปะ",
+            "zh-CN": "拼贴画",
+            "zh-TW": "拼貼"
+          }
+        },
+        {
+          "value": "grid",
+          "label": {
+            "da": "Gitter",
+            "de": "Raster",
+            "en": "Grid",
+            "es": "Cuadrícula",
+            "fi": "Ruudukko",
+            "fr": "Grille",
+            "hi": "ग्रिड",
+            "it": "Griglia",
+            "ja": "グリッド",
+            "ko": "그리드",
+            "ms": "Grid",
+            "nb": "Rutenett",
+            "nl": "Raster",
+            "pt-BR": "Grade",
+            "pt-PT": "Grelha",
+            "sv": "Rutnät",
+            "th": "กริด",
+            "zh-CN": "网格",
+            "zh-TW": "網格"
+          }
+        }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "product_vendor_enable",
+      "label": {
+        "da": "Vis produktleverandør",
+        "de": "Produktverkäufer anzeigen",
+        "en": "Show product vendor",
+        "es": "Mostrar proveedor del producto",
+        "fi": "Näytä tuotteen myyjä",
+        "fr": "Afficher le distributeur du produit",
+        "hi": "उत्पाद विक्रेता दिखाएं",
+        "it": "Indica fornitore prodotto",
+        "ja": "商品の販売元を表示する",
+        "ko": "제품 공급 업체 표시",
+        "ms": "Tunjukkan vendor produk",
+        "nb": "Vis produktleverandør",
+        "nl": "Productleverancier weergeven",
+        "pt-BR": "Exiba o fornecedor do produto",
+        "pt-PT": "Mostrar o fornecedor do produto",
+        "sv": "Visa produktsäljare",
+        "th": "แสดงผู้ขายสินค้า",
+        "zh-CN": "显示产品厂商",
+        "zh-TW": "顯示產品廠商"
+      }
+    }
+  ]
+}
+{% endschema %}

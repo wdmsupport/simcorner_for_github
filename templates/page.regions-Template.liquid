@@ -1,0 +1,57 @@
+<!-- /templates/page.liquid -->
+
+<div class="grid page_regions_main">
+   <script>
+    window.theme = window.theme || {};
+    theme.strings = {
+      zoomClose: {{ "products.zoom.close" | t | json }},
+      zoomPrev: {{ "products.zoom.prev" | t | json }},
+      zoomNext: {{ "products.zoom.next" | t | json }},
+      moneyFormat: {{ shop.money_format | json }},
+      addressError: {{ 'home_page.map.address_error' | t | json }},
+      addressNoResults: {{ 'home_page.map.address_no_results' | t | json }},
+      addressQueryLimit: {{ 'home_page.map.address_query_limit_html' | t | json }},
+      authError: {{ 'home_page.map.auth_error_html' | t | json }},
+      cartEmpty: {{ 'cart.general.empty' | t | json }},
+      cartCookie: {{ 'cart.general.cookies_required' | t | json }},
+      cartSavings: {{ 'cart.general.savings_html' | t: savings: '[savings]' | json }}
+    };
+    theme.settings = {
+      cartType: {{ settings.cart_type | json }},
+      gridType: {{ settings.collection_products_grid | json }}
+    };
+  </script>
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+
+    <header class="section-header text-center">
+      <h1>{{ page.title }}</h1>
+      <hr class="hr--small">
+    </header>
+
+    <div class="grid">
+      <div class="grid__item large--four-fifths push--large--one-tenth">
+        <div class="rte rte--nomargin rte--indented-images">
+          {%- assign child_collection_links = linklists[page.handle].links -%}
+            {%- if child_collection_links != blank -%}
+              <nav>
+                <ul>
+                  {%- for link in child_collection_links -%}
+                    <li>
+                      <a href="{{ link.url}}"><span><img src="{{ link.title | replace: ' ', '-' | replace: '/', '' | replace: ',', '' | append: '-region.png' | asset_url }}"></span></a> 
+                      <a href="{{ link.url}}">{{ link.title | escape }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              </nav>
+            {%- endif -%}
+        </div>
+         {% section 'featured-collection-slider' %}
+     </div>
+     </div>
+   
+     </div>
+  <div></div>
+   {{ page.content }}
+     {% include 'collection-faq' %}
+  </div>
+

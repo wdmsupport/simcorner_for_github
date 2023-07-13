@@ -1,0 +1,50 @@
+<!-- /snippets/search-bar.liquid -->
+{% comment %}
+
+  A snippet to include a search bar anywhere in your theme.
+  Note we are using 'input-group' for the layout. Look under Forms > Input Groups for some demos.
+
+  More information:
+   - http://docs.shopify.com/themes/liquid-variables/search
+
+  To return only products in results:
+    - http://docs.shopify.com/manual/configuration/store-customization/return-only-product-in-storefront-search-results
+    - Or manually add type=product to the search URL as a query parameter
+    - Uncomment hidden input with value="product" below
+
+{% endcomment %}
+
+{% comment %}
+  Set the default button style if not defined
+{% endcomment %}
+{% unless search_btn_style %}
+  {% assign search_btn_style = 'btn--secondary' %}
+{% endunless %}
+<div class="search_form_main">
+<form action="{{ routes.search_url }}" method="get" class="input-group search-bar {{ search_bar_location }}" role="search">
+  <input type="hidden" name="type" value="product">
+  <span class="input-group-btn">
+    <button type="submit" class="{{ search_btn_style }} icon-fallback-text">
+      <!--span class="icon icon-search" aria-hidden="true"></span-->
+      <img class="search_main" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/search_icon.svg?294"/>
+      <img class="search_toggle" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/top_search_icon.svg?v=1585201544"/>
+      <img class="w_h_sea" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/top_search_icon_orange.svg?v=1586937787"/>
+      <img class="search_load" src="{{ 'seacrh_loader.gif' | asset_url }}"/>
+      <span class="fallback-text">{{ 'general.search.submit' | t }}</span>
+    </button>
+  </span>
+  <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Where are you travelling to" class="input-group-field" aria-label="{{ 'general.search.placeholder' | t }}">
+     <input type="hidden" name="options[prefix]" value="last" /> 
+ <img class="close_icon" src="https://cdn.shopify.com/s/files/1/0179/4388/7926/files/cancel.png?v=1581596474"/>
+</form>
+
+<div id="result_div"></div>
+</div>
+{% comment %}
+<div class="search_banner mobile_search define_float">
+  <form class="search" action="/search">
+    <input type="submit" value="" />  
+    <input type="text" placeholder="Try 'USA'" name="q" value="{{ search.terms | escape }}"  />
+  </form>
+</div>
+{% endcomment %}

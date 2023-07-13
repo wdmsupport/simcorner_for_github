@@ -1,0 +1,75 @@
+<script src="https://www.google.com/recaptcha/api.js?render=6LfYcvUUAAAAAPSbXL27tNckV039XHC4zFCEUpNM"></script>
+  <script>
+  grecaptcha.ready(function() {
+      grecaptcha.execute('6LfYcvUUAAAAAPSbXL27tNckV039XHC4zFCEUpNM', {action: 'homepage'}).then(function(token) {
+
+      });
+  });
+  </script>
+<!-- /templates/page.contact.liquid -->
+<div class="grid contact_outer">
+
+  <div class="grid__item large--five-sixths push--large--one-twelfth">
+
+    <header class="section-header text-center">
+      <h1>{{ page.title }}</h1>
+      <hr class="hr--small">
+    </header>
+
+    <div class="grid">
+      <div class="grid__item large--four-fifths push--large--one-tenth">
+        
+
+        <div class="form-vertical">
+          <h3>Need help?</h3>
+          <!--p>Feel free to read our <a href="/pages/faq">FAQs</a> , call <a href="tel:1300733658">1300 733 658</a> , Email <a href="mailto:support@simcorner.com">support@simcorner.com</a>  or submit a request below:</p-->
+          <p>Have you got any questions? Please submit the below form and our team will respond back to you as soon as possible.</p>
+          {% form 'contact' %}
+			<div class="form_container">
+            {% comment %}
+              Successful message
+            {% endcomment %}
+            {% if form.posted_successfully? %}
+              <p class="note form-success">
+                {{ 'contact.form.post_success' | t }}
+              </p>
+            {% endif %}
+
+            {{ form.errors | default_errors }}
+
+            <div class="grid grid--small">
+              <div class="grid__item large--one-half">
+                <label for="ContactFormName" class="">{{ 'contact.form.name' | t }}*</label>
+                <input required type="text" id="ContactFormName" class="input-full" name="contact[name]" autocapitalize="words" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}">
+              </div>
+
+              <div class="grid__item large--one-half">
+                <label for="ContactFormEmail" class="">{{ 'contact.form.email' | t }}*</label>
+                <input required type="email" id="ContactFormEmail" class="input-full" name="contact[email]" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
+              </div>
+            </div>
+
+            <label for="ContactFormPhone" class="">{{ 'contact.form.phone' | t }}*</label>
+            <input required type="tel" id="ContactFormPhone" class="input-full" name="contact[phone]" pattern="[0-9\-]*" value="{% if form.phone %}{{ form.phone }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+
+            <label for="ContactFormMessage" class="">{{ 'contact.form.message' | t }}*</label>
+            <textarea required rows="10" id="ContactFormMessage" class="input-full" name="contact[body]">{% if form.body %}{{ form.body }}{% endif %}</textarea>
+            <input type="submit" class="btn right" value="{{ 'contact.form.send' | t }}">
+              <span>* Required Fields</span>
+          </div>
+          {% endform %}
+          <p></p>
+          <h3>I have not heard back from SimCorner?</h3>
+<p>At SimCorner we strive to reply back promptly. If you have emailed us and have not received a reply then please check your junk or spam folder.</p>
+          <!-- <div class="rte rte--nomargin rte--indented-images">
+          {{ page.content }}
+  </div>-->
+        </div>
+        
+        </div>
+      </div>
+      
+    </div>
+
+
+</div>

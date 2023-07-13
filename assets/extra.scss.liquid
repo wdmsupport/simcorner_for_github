@@ -1,0 +1,348 @@
+@font-face {
+  font-family: 'Rational Display DEMO Light';
+  src: url('{{ "RationalDisplayDEMO-Light.eot" | asset_url }}');
+  src: url('{{ "RationalDisplayDEMO-Light.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "RationalDisplayDEMO-Light.woff" | asset_url }}') format("woff"),
+       url('{{ "RationalDisplayDEMO-Light.woff2" | asset_url }}') format("woff2"),
+       url('{{ "RationalDisplayDEMO-Light.ttf" | asset_url }}') format("truetype"),
+       url('{{ "RationalDisplayDEMO-Light.svg" | asset_url }}#RationalDisplayDEMO-Light') format("svg");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+};
+
+@font-face {
+  font-family: 'Rational Display DEMO Bold';
+  src: url('{{ "RationalDisplayDEMO-SemiBold.eot" | asset_url }}');
+  src: url('{{ "RationalDisplayDEMO-SemiBold.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "RationalDisplayDEMO-SemiBold.woff" | asset_url }}') format("woff"),
+       url('{{ "RationalDisplayDEMO-SemiBold.woff2" | asset_url }}') format("woff2"),
+       url('{{ "RationalDisplayDEMO-SemiBold.ttf" | asset_url }}') format("truetype"),
+       url('{{ "RationalDisplayDEMO-SemiBold.svg" | asset_url }}#RationalDisplayDEMO-SemiBold') format("svg");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+};
+/*fonts*/
+$RationalLight: 'Rational Display DEMO Light';
+$RationalBold: 'Rational Display DEMO Bold';
+
+$defaultbodyfont:'Muli', sans-serif; 
+
+/*============================================================================
+  Dependency-free breakpoint mixin
+    - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
+==============================================================================*/
+$min: min-width;
+$max: max-width;
+@mixin at-query ($constraint, $viewport1, $viewport2:null) {
+  @if $constraint == $min {
+    @media screen and ($min: $viewport1) {
+      @content;
+    }
+  } @else if $constraint == $max {
+    @media screen and ($max: $viewport1) {
+      @content;
+    }
+  } @else {
+    @media screen and ($min: $viewport1) and ($max: $viewport2) {
+      @content;
+    }
+  }
+}
+
+
+$viewportIncrement: 1px;
+$siteWidth: 1342px;
+$small: 590px;
+$extrasmall: 320px;
+$medium: 768px;
+$large: 769px;
+$xlarge: $siteWidth + $viewportIncrement;
+
+$postSmall: $small + $viewportIncrement;
+$preMedium: $medium - $viewportIncrement;
+$preLarge: $large - $viewportIncrement;
+
+/*================ The following are dependencies of csswizardry grid ================*/
+$breakpoints: (
+  'small' '(max-width: #{$small})',
+  'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
+  'medium-down' '(max-width: #{$medium})',
+  'large' '(min-width: #{$large})',
+  'medium' '(min-width: #{$medium})',
+  'extrasmall' '(min-width: #{$extrasmall})',
+  'xlarge' '(min-width: #{$xlarge})'
+);
+$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large', 'xlarge');
+$breakpoint-has-push:  ('medium', 'medium-down', 'large');
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large');
+
+
+
+
+
+/*vishali*/
+
+
+@include at-query($min, $extrasmall) {
+  
+  /*Term & Conditions*/
+
+  .grid.terms_conditions_outer {
+    width: 100%;     
+    float: left;
+     margin: 0;
+    padding:0 16px;
+}
+
+  .terms_cond_content {
+    strong {
+      font-weight: 700;
+      padding: 0 0 2px 0;
+      float: left;
+      width: 100%;
+    }
+  }
+
+.section-header {
+    width: 100%;
+    float: left;
+    margin: 0;
+}
+    .grid.terms_conditions_outer .grid__item span {
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: 0.005em;
+    color: #000000;
+    font-weight:normal;
+      padding: 0 0 20px 0;
+}
+    .grid.terms_conditions_outer .grid__item span > strong {
+    font-weight: bolder;
+    font-family: Rational Display DEMO Bold;
+   padding: 20px 0px 2px 0px;  
+}
+   .grid.terms_conditions_outer .grid{
+   float: left;
+    width: 100%;
+       margin: 0;
+}
+    .grid.terms_conditions_outer .grid__item {
+    width: 100%;
+    float: left;
+    padding:0;
+}
+  .grid.terms_conditions_outer h1 {
+    width: 100%;
+    float: left;
+    padding: 0 16px 8px 16px;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 42px;
+    color: #191B1D;
+    text-align: center;
+    letter-spacing: 0.005em;
+    margin:61px 0 50px 0;
+}
+  .grid.terms_conditions_outer hr.hr--small {
+    display: none;
+}
+  .terms_cond_inner {
+    float: left;
+    width: 100%;
+    margin: 0;
+}
+  .grid.terms_conditions_outer .grid__item span:last-child {
+    margin: 0;
+}
+  .grid.terms_conditions_outer .terms_cond_inner.refund {
+    width: 100%;
+    float: left;
+}
+ .grid.terms_conditions_outer  .terms_cond_inner_refund h3 {
+    width: 100%;
+    float: left;
+    
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 40px;
+   color: #191B1D;
+    letter-spacing: 0.005em;
+    padding: 70px 17px 40px 18px;
+    margin: 0;
+   text-transform: capitalize;
+}
+}
+
+ /*Term & Conditions*/
+#terms-amp-conditions #PageContainer main.main-content {
+      width: 100%;
+      float: left;
+}
+  .grid.terms_conditions_outer {
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 101px 30px 101px 30px;
+  }
+ .grid.terms_conditions_outer .grid__item {
+    width: 100%;
+    float: left;
+    padding: 0;
+    left: 0;
+} 
+  .terms_cond_inner_refund {
+    width: 100%;
+    float: left;
+    padding: 0 0 166px 0;
+}
+  .grid.terms_conditions_outer .terms_cond_inner_refund h3 {
+    width: 100%;
+    float: left;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 42px;
+    color: #191B1D;
+    letter-spacing: 0.005em;
+    padding: 70px 0px 40px 0px;
+    margin: 0;
+    text-transform: capitalize;
+    text-align: center;
+}
+  .grid.terms_conditions_outer h1 {
+    width: 100%;
+    float: left;
+    padding: 0 0 8px 0;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 50px;
+    color: #191B1D;
+    text-align: center;
+    letter-spacing: 0.005em;
+    margin: 0 0 59px 0;
+    text-align: center;
+}
+
+  
+  
+  
+  /*privacy policy*/
+  #privacy-policy .main-content {
+    width: 100%;
+    float: left;
+    padding: 0;
+}
+ .grid.privacy_outer {
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 0 16px;
+}
+  .grid.privacy_outer p {
+    margin: 0;
+    width: 100%;
+    float: left;
+}
+  .grid.privacy_outer .grid__item {
+    width: 100%;
+    float: left;
+    padding:0;
+}
+  .grid.privacy_outer .section-header {
+    width: 100%;
+    float: left;
+    margin: 0;
+}
+.grid.privacy_outer h1 {
+    width: 100%;
+    float: left;
+    padding: 0 16px 8px 16px;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    color: #191B1D;
+    line-height: 42px;
+    text-align: center;
+    letter-spacing: 0.005em;
+    margin:61px 0 50px 0;
+}
+   .grid.privacy_outer hr.hr--small {
+    display: none;
+}
+  .grid.privacy_outer .grid__item span {
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    line-height: 23px;
+ 
+    color: #000000;
+ 
+}
+  .grid.privacy_outer .grid__item span > strong {
+    font-weight: 700;
+    
+   padding: 20px 0px 2px 0px;
+  
+}
+  
+ .grid.privacy_outer .grid{
+   float: left;
+    width: 100%;
+       margin: 0;
+}
+
+
+
+
+/*min width 768px*/
+@include at-query($min, $medium) {
+  /*sub menu dropdown*/
+  
+
+  
+  
+  
+  /*Privacy Policy*/
+  .grid.privacy_outer {
+    width: 100%;
+    float: left;
+    margin: 0;
+    padding: 101px 30px 101px 30px;
+}
+  
+  .grid.privacy_outer .grid__item {
+    width: 100%;
+    float: left;
+    padding: 0;
+    left: 0;
+}
+  .grid.privacy_outer h1 {
+    width: 100%;
+    float: left;
+    padding: 0 0 8px 0;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 50px;
+   
+    margin: 0 0 59px 0;
+    text-align: center;
+}    
+  .grid.privacy_outer .grid__item span {
+    float: left;
+    width: 100%;
+    font-size: 16px;
+    line-height: 23px;
+  
+    color: #000000;
+    font-weight:normal;
+    padding: 0 0 20px 0px;
+}
+}
