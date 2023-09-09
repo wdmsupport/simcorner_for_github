@@ -499,7 +499,7 @@
         "type": "featured-blog",
         "settings": {
           "title": "TOP TRAVEL TIPS AND HACKS",
-          "blog": "travel-tips",
+          "blog": "news",
           "post_limit": 3,
           "blog_show_date": false,
           "blog_show_author": false,
