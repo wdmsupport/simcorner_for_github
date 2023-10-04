@@ -135,24 +135,21 @@ div#shopify-section-16461926904ba6300e  h2{
                 {% assign demonum = demonymArray[forloop.index0] %}
               {% endif %}
             {% endfor %}
-{% if template contains 'sub-collection' %}     
-  		<title>{{ collection.title }} SIM Cards for Australian Travellers: Best Prepaid Travel SIMs {{ "now" | date:  "%b-%Y"}} | SimCorner</title>
-  		<meta name="description" content="Discover the best {{ collection.title }} Sim cards for travel. Choose SimCorner: Canstar Winner 2023 for prepaid travel SIM cards for {{ collection.title }} and international sim cards. Stay connected and travel without worrying about hefty international roaming fees. Best Prepaid Travel SIM cards with Data for {{ "now" | date:  "%b-%Y"}}. Aussie owned and operated">
-  
+  {% if template contains 'sub-collection' %} 
+  		<title>{{ collection.title }} Travel Sim Cards in Australia | SimCorner</title>
+  		<meta name="description" content="Need a Travel Sim Card for {{ collection.title }}? SimCorner is the best place to buy your {{ demonum }} SIM cards online before you fly! Perfect for tourists with iPhone , Samsung and Smartphone devices. Free shipping Australia wide. Get your {{ collection.title }} SIM card online today!">
   {% elsif template contains 'popular-destinations' %} 
-  		<title>{{ collection.title }} SIM Cards for Australian Travellers: Best Prepaid Travel SIMs {{ "now" | date:  "%b-%Y"}} | SimCorner</title>
-  			<meta name="description" content={{ page_description | strip_html | json }}>
-  
-    {% elsif template contains 'collection.city' %} 
-  		<title>{{ collection.title }} SIM Cards for Australian Travellers: Best Prepaid Travel SIMs {{ "now" | date:  "%b-%Y"}} | SimCorner</title>
-  		<meta name="description" content="Discover the best Sim cards for {{ collection.title }}. Choose SimCorner: Canstar Winner 2023 for prepaid travel SIM cards for {{ collection.title }} and international sim cards. Stay connected and travel without worrying about hefty international roaming fees. Best Prepaid Travel SIM cards with Data for {{ "now" | date:  "%b-%Y"}}. Aussie owned and operated.">
- 
+  		<title>Prepaid {{ collection.title }} Sim Cards in Australia | SimCorner</title>
+  		<meta name="description" content="{{ page_description | strip_html | json }}">
+  {% elsif template contains 'collection.city' %} 
+  		<title>Prepaid {{ collection.title }} Travel Sim Cards in Australia | SimCorner</title>
+  		<meta name="description" content="Unbeatable Prepaid Travel Sim Card for {{ collection.title }} for Your Mobile Phone, Buy Your {{ demonum }} Sim Cards Before You Fly! Perfect for Tourists, Buy Online and Save!">
   {% else %}
       	<title>
       		{{ page_title }}{% if current_tags %}{% assign meta_tags = current_tags | join: ', ' %} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %} {% unless page_title contains "SimCorner" %} {{ shop.name }}{% endunless %}
       	</title>
       	{% if page_description %}
-      		<meta name="description" content={{ page_description | escape }}>
+      		<meta name="description" content="{{ page_description | escape }}">
   	  	{% endif %}
   {% endif %}
     <!-- Title and description ================================================== -->
