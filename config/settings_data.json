@@ -129,7 +129,7 @@
         "disabled": true,
         "settings": {
           "title": "Featured collection",
-          "home_featured_products": "our-popular-esims",
+          "home_featured_products": "popular-destination-esims",
           "collection_products_grid": "grid"
         }
       },
