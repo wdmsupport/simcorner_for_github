@@ -503,7 +503,7 @@
         "type": "featured-blog",
         "settings": {
           "title": "TOP TRAVEL TIPS AND HACKS",
-          "blog": "news",
+          "blog": "articles",
           "post_limit": 3,
           "blog_show_date": false,
           "blog_show_author": false,
