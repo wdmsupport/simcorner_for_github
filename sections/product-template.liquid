@@ -108,7 +108,7 @@ xhr.send(data);
             {% endcomment %}
             <div class="product-single__photo--flex-wrapper">
               <div class="product-single__photo--flex">
-                {% include 'image-style' with image: featured_image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
+                {% include 'image-style' with image, image: featured_image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
                 <div id="{{ wrapper_id }}" class="product-single__photo--container">
                   <div class="product-single__photo-wrapper" style="padding-top:{{ 1 | divided_by: featured_image.aspect_ratio | times: 100}}%;">
                     {% assign img_url = featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
@@ -149,7 +149,7 @@ xhr.send(data);
 
                 <div class="product-single__photo--flex-wrapper ffff">
                   <div class="product-single__photo--flex">
-                    {% include 'image-style' with image: image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
+                    {% include 'image-style' with image, image: image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
                     <div id="{{ wrapper_id }}" class="product-single__photo--container">
                       <div class="product-single__photo-wrapper" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;">
                         {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
@@ -199,7 +199,7 @@ xhr.send(data);
             <div class="main_image slickslide">
             <div class="product-single__photo--flex-wrapper">
               <div class="product-single__photo--flex">
-                {% include 'image-style' with image: featured_image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
+                {% include 'image-style' with image, image: featured_image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
                 <div id="{{ wrapper_id }}" class="product-single__photo--container product-single__photo--container-thumb">
                   <div class="product-single__photo-wrapper" style="padding-top:{{ 1 | divided_by: featured_image.aspect_ratio | times: 100}}%;">
                     {% assign img_url = featured_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
@@ -240,7 +240,7 @@ xhr.send(data);
 
                 <div class="product-single__photo--flex-wrapper">
                   <div class="product-single__photo--flex">
-                    {% include 'image-style' with image: image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
+                    {% include 'image-style' with image, image: image, width: 575, height: 850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}
                     <div id="{{ wrapper_id }}" class="product-single__photo--container product-single__photo--container-thumb">
                       <div class="product-single__photo-wrapper" style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;">
                         {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
@@ -345,11 +345,11 @@ xhr.send(data);
             <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
             <link itemprop="availability" {% if product.available %}InStock{% else %}OutOfStock{% endif %}>
 
-            {% capture "form_classes" %}
+            {% capture form_classes %}
               product-single__form{% if product.has_only_default_variant %} product-single__form--no-variants{% endif %}
             {%- endcapture %}
 
-            {% capture "form_id" %}AddToCartForm--{{ section.id }}{%- endcapture %}
+            {% capture form_id %}AddToCartForm--{{ section.id }}{%- endcapture %}
 
             {% form 'product', product, class:form_classes, id:form_id, data-product-form: '' %}
             
@@ -977,3 +977,36 @@ if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-style' with image: featured_image, width: 575, height:
+    850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  to: "{% include 'image-style' with image, image: featured_image, width: 575, height:
+    850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  position: 4665..4822
+- from: "{% include 'image-style' with image: image, width: 575, height: 850, small_style:
+    true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  to: "{% include 'image-style' with image, image: image, width: 575, height: 850,
+    small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  position: 7177..7325
+- from: "{% include 'image-style' with image: featured_image, width: 575, height:
+    850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  to: "{% include 'image-style' with image, image: featured_image, width: 575, height:
+    850, small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  position: 9828..9985
+- from: "{% include 'image-style' with image: image, width: 575, height: 850, small_style:
+    true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  to: "{% include 'image-style' with image, image: image, width: 575, height: 850,
+    small_style: true, wrapper_id: wrapper_id, img_id_class: img_id_class %}"
+  position: 12313..12461
+- from: '{% capture "form_classes" %}'
+  to: "{% capture form_classes %}"
+  position: 18016..18042
+- from: '{% capture "form_id" %}'
+  to: "{% capture form_id %}"
+  position: 18207..18228
+{% endcomment %}

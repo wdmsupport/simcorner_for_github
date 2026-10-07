@@ -31,7 +31,7 @@
               {% capture img_id_class %}ProductImage-{{ image.id }}{% endcapture %}
               {% capture img_wrapper_id %}ProductImageWrapper-{{ image.id }}{% endcapture %}
               {% assign img_url = image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-              {% include 'image-style' with image: image, small_style: false, width: 700, height: 800, wrapper_id: img_wrapper_id, img_id_class: img_id_class %}
+              {% include 'image-style' with image, image: image, small_style: false, width: 700, height: 800, wrapper_id: img_wrapper_id, img_id_class: img_id_class %}
 
               <div id="{{ img_wrapper_id }}" class="product-single__photo-wrapper product-single__photo-wrapper--featured-product supports-js{% unless featured_image == image %} hide{% endunless%}" data-image-id="{{ image.id }}">
                 <div style="padding-top:{{ 1 | divided_by: image.aspect_ratio | times: 100}}%;">
@@ -89,11 +89,11 @@
               </button>
             </div>
           {% else %}
-            {% capture "form_classes" %}
+            {% capture form_classes %}
               product-single__form{% if product.has_only_default_variant %} product-single__form--no-variants{% endif %}
             {%- endcapture %}
 
-            {% capture "form_id" %}AddToCartForm--{{ section.id }}{%- endcapture %}
+            {% capture form_id %}AddToCartForm--{{ section.id }}{%- endcapture %}
 
             {% form 'product', product, class:form_classes, id:form_id, data-product-form: '' %}
               {% unless product.has_only_default_variant %}
@@ -434,3 +434,21 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% include 'image-style' with image: image, small_style: false, width: 700,
+    height: 800, wrapper_id: img_wrapper_id, img_id_class: img_id_class %}"
+  to: "{% include 'image-style' with image, image: image, small_style: false, width:
+    700, height: 800, wrapper_id: img_wrapper_id, img_id_class: img_id_class %}"
+  position: 1792..1945
+- from: '{% capture "form_classes" %}'
+  to: "{% capture form_classes %}"
+  position: 4700..4726
+- from: '{% capture "form_id" %}'
+  to: "{% capture form_id %}"
+  position: 4891..4912
+{% endcomment %}
